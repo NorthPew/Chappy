@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import jwt from 'jsonwebtoken';
 
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+
+// Import routes
+import login from './backend/routes/login';
 
 // Configuration
 const PORT = 666
@@ -27,7 +29,11 @@ app.get('*', (req, res) => {
     res.sendFile(join(dist, 'index.html'))
 })
 
+app.post('/login', login)
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
 })
+
+export default SECRET
