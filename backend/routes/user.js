@@ -82,4 +82,39 @@ router.post('/signup', async (req, res) => {
     res.status(200).send(createUser)
 })
 
+
+// GET - Authorization
+router.get('/authorization', async (req, res) => {
+
+    await db.read()
+
+    const users = db.data.users
+
+    let authHeader = req.headers.authorization
+
+    if (!authHeader) {
+        res.status(401).send({ message: 'Du behöver vara autentiserad för att kunna delta'})
+
+        return
+    }
+
+    let token = authHeader.replace('Bearer', '')
+
+    try {
+        let decoded = jwt.verify(token, SECRET)
+        
+        console.log('GET /authorization dekryptat: ', decoded);
+
+        let userId = decoded.userId
+        let user = users.find(user => user.id = userId)
+
+        console.log(`Användaren ${user.username} har tillgång till låsta kanaler!`);
+
+        res.status(202).send({ message: 'Du är autentiserad'})
+    } catch (error) {
+        console.log('GET /authorization felmeddelande: ', error.message)
+        res.status(401).send({message: 'Du blev inte autentiserad!'})
+    }
+})
+
 export default router
