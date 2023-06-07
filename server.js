@@ -5,7 +5,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 // Import routes
-import login from './backend/routes/login';
+import login from './backend/routes/user';
 
 // Configuration
 const PORT = 666
@@ -29,7 +29,8 @@ app.get('*', (req, res) => {
     res.sendFile(join(dist, 'index.html'))
 })
 
-app.post('/login', login)
+app.use('/api/user', userRouter)
+
 
 // Start server
 app.listen(PORT, () => {

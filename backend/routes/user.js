@@ -2,7 +2,12 @@ import express from 'express'
 import { getDb } from '../database/database'
 import SECRET from '../../server'
 
-const login = async (req, res) => {
+const router = express.Router()
+
+const db = getDb()
+
+// POST - login
+router.post("/login", async (req, res) => {
 
     // Reading database
     await db.read()
@@ -46,6 +51,35 @@ const login = async (req, res) => {
 
     let tokenPackage = {token: token}
     res.send(tokenPackage)
-}
+})
 
-export default login
+
+// POST - Sign up
+router.post('/signup', async (req, res) => {
+    await db.read()
+    
+    let userName = req.body.username
+    let userPassword = req.body.password
+
+    function generateID() {
+        return Math.floor(Math.random() * 10000 - 1)
+    }
+
+    let createUser = {
+        id: generateID(),
+        username: userName,
+        password: userPassword
+    }
+
+    if (!req.body || !userName || !userPassword) {
+        res.status(400).send({ message: 'Användarnamn och lösenord måste vara ifyllda!'})
+
+        return
+    }
+
+    db.data.users.push(createUser)
+    await db.write()
+    res.status(200).send(createUser)
+})
+
+export default router
