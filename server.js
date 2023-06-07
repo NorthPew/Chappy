@@ -1,11 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 
+// Directory stuff
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-// Import routes
-import login from './backend/routes/user';
+// Routers
+import userRouter from './backend/routes/user.js'
 
 // Configuration
 const PORT = 666
