@@ -99,7 +99,7 @@ router.get('/authorization', async (req, res) => {
         return
     }
 
-    let token = authHeader.replace('Bearer', '')
+    let token = authHeader.replace('Bearer: ', '')
 
     try {
         let decoded = jwt.verify(token, SECRET)

@@ -10,7 +10,7 @@ import userRouter from './backend/routes/user.js'
 
 // Configuration
 const PORT = 666
-const SECRET = 'Äppelpaj'
+const SECRET = 'terracotta'
 
 const app = express()
 
