@@ -1,5 +1,9 @@
 {
-    "users": [
-
-    ]
+  "users": [
+    {
+      "id": 8144,
+      "username": "Hajime",
+      "password": "123"
+    }
+  ]
 }

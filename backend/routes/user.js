@@ -1,4 +1,5 @@
 import express from 'express'
+import jwt from 'jsonwebtoken'
 import { getDb } from '../database/database.js'
 import SECRET from '../../server.js'
 
@@ -23,7 +24,7 @@ router.post("/login", async (req, res) => {
     }
 
     // Check if User (username) exists
-    let findUser = users.find(user => user.name === userName)
+    let findUser = users.find(user => user.username === userName)
 
     if (!findUser) {
         console.log('Felaktigt användarnamn');

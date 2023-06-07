@@ -28,12 +28,12 @@ const dist = join(weAreHere, './dist')
 app.use(express.static(dist))
 
 // Routes
-app.get('*', (req, res) => {
-    res.sendFile(join(dist, 'index.html'))
-})
 
 app.use('/api/user', userRouter)
 
+app.get('*', (req, res) => {
+    res.sendFile(join(dist, 'index.html'))
+})
 
 // Start server
 app.listen(PORT, () => {
