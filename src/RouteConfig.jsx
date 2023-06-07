@@ -13,6 +13,10 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <Start />
+            },
+            {
+                path: '/chappy',
+               // element: <GroupView />
             }
         ]
     }

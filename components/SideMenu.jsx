@@ -15,6 +15,7 @@ const NavBody = styled.nav`
     justify-content: flex-start;
     align-items: center;
     flex-flow: column wrap;
+    row-gap: 7.5px;
 `
 
 const NavLinkBtn = styled(NavLink)`
@@ -52,6 +53,11 @@ const SideMenu = () => {
 
     return (
         <NavBody>
+            <NavLinkBtn to="/" title="Start">
+            <span className="material-symbols-outlined">
+                    chat
+                </span> 
+            </NavLinkBtn>
             {
                 isLoggedIn && (
                     <>
@@ -62,7 +68,7 @@ const SideMenu = () => {
                     </>
                 )
             }
-            <NavLinkBtn title="Chappy | Lättåtkomliga gruppchatten">
+            <NavLinkBtn to="/chappy" title="Chappy | Lättåtkomliga gruppchatten">
                 <span className="material-symbols-outlined">
                     public
                 </span>
