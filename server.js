@@ -12,6 +12,8 @@ import userRouter from './backend/routes/user.js'
 const PORT = 666
 const SECRET = 'Äppelpaj'
 
+const app = express()
+
 // Middleware
 app.use( cors())
 app.use( express.json())

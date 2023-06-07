@@ -1,6 +1,6 @@
 import express from 'express'
-import { getDb } from '../database/database'
-import SECRET from '../../server'
+import { getDb } from '../database/database.js'
+import SECRET from '../../server.js'
 
 const router = express.Router()
 
