@@ -20,11 +20,11 @@ const router = createBrowserRouter([
                 element: <Start />
             },
             {
-                path: '/chappy/',
+                path: '/chappy',
                 element: <GroupView  />,
                 children: [
                     {
-                        path: '/chappy/',
+                        path: '/chappy',
                         element: <GroupChatOneView />
                     },
                     {
