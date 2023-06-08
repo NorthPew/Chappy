@@ -5,6 +5,11 @@ import Root from "../routes/Root";
 import Start from "../routes/Start";
 import GroupView from "../routes/GroupView";
 
+// Group Chat Routes
+import GroupChatOneView from "../routes/group routes/GroupChatOneView";
+import GroupChatTwoView from "../routes/group routes/GroupChatTwoView";
+
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -15,18 +20,17 @@ const router = createBrowserRouter([
                 element: <Start />
             },
             {
-                path: '/chappy',
+                path: '/chappy/',
                 element: <GroupView  />,
                 children: [
                     {
-                        path: '/chappy/chat1',
-                        // element: Chat 1 here!
+                        path: '/chappy/',
+                        element: <GroupChatOneView />
                     },
                     {
-
+                        path: '/chappy/private',
+                        element: <GroupChatTwoView />
                     }
-                    
-
                 ]
             }
         ]
