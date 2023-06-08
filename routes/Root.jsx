@@ -1,11 +1,11 @@
 import Main from "../components/Main"
 import Header from "../components/Header"
-import SideMenu from "../components/SideMenu"
+import SideHeader from "../components/SideHeader"
 
 const Root = () => (
     <>
         <Header />
-        <SideMenu />
+        <SideHeader />
         <Main />
     </>
 )

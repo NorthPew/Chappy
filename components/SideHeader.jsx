@@ -48,12 +48,12 @@ const HorizontalLine = styled.div`
 
 // Include a map function to display buttons for all DMs!
 
-const SideMenu = () => {
-    const {isLoggedIn} = useContext(UserContext);
+const SideHeader = () => {
+    const {isLoggedIn, setIsOnGroup} = useContext(UserContext);
 
     return (
         <NavBody>
-            <NavLinkBtn to="/" title="Start">
+            <NavLinkBtn onClick={() => setIsOnGroup(false)} to="/" title="Start">
             <span className="material-symbols-outlined">
                     chat
                 </span> 
@@ -68,7 +68,7 @@ const SideMenu = () => {
                     </>
                 )
             }
-            <NavLinkBtn to="/chappy" title="Chappy | Lättåtkomliga gruppchatten">
+            <NavLinkBtn onClick={() => setIsOnGroup(true)} to="/chappy" title="Chappy | Lättåtkomliga gruppchatten">
                 <span className="material-symbols-outlined">
                     public
                 </span>
@@ -78,4 +78,4 @@ const SideMenu = () => {
 }
 
 
-export default SideMenu
+export default SideHeader
