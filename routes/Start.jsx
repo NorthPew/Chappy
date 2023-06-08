@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../src/ContextRoot";
 import styled from "styled-components";
 
-import ice from "../images/background.jpg"
 
+// Login or Register
+import ice from "../images/background.jpg"
 
 const BackgroundBox = styled.div`
     background-image: url('${ice}');
@@ -13,34 +14,106 @@ const BackgroundBox = styled.div`
 `
 
 const Container = styled.div`
-    border-radius: 6.5px;
-    background-color: #282b30;
+    border-radius: 7.5px;
+    background-color:#36393e;
     width: 520px;
-    height: 420px;
+    height: 380px;
+`
+
+const Form = styled.form`
+    display: grid;
+    justify-content: center;
+    row-gap: 7.5px;
+`
+
+const FormText = styled.h1`
+    text-align: center;
+`
+
+const FormInput = styled.input`
+    border-radius: 7.5px;
+    background-color:#424549;
+    padding: .5em .75em;
+    border: none;
+`
+
+const FormLabel = styled.label`
+    cursor: pointer;
+`
+
+const FormBtn = styled.button`
+    border-radius: 7.5px;
+    border: none;
+    background-color: #099915;
+    padding: .5em .75em;
+    font-weight: 600;
+    cursor: pointer;
+`
+
+const FakeLink = styled.p`
+    cursor: pointer;
+    color: #7289da;
+    font-weight: 600;
+`
+
+// Start
+
+const Wrapper = styled.div`
+    width: inherit;
+    height: inherit;
 `
 
 function UserStart() {
 
     return (
-        <></>
+        <Wrapper>
+            {
+                // Here will there be a list of all friends/users
+            }
+        </Wrapper>
     )
 }
 
 function LoginOrRegister() {
+    const [register, setRegister] = useState(false)
+    const {isLoggedIn, setIsLoggedIn} = useContext(UserContext);
+
+    function onLogInSubmit(event) {
+        event.preventDefault()
+        setIsLoggedIn(true)
+    }
+
+    function onRegisterSubmit(event) {
+        event.preventDefault()
+    }
+
     return (
         <BackgroundBox>
             <Container>
-                <form>
-                    <h1>Registera</h1>
-                    <label htmlFor="inputUserName">Användarnamn</label>
-                    <input type="text" id="inputUserName"></input>
-                    <label htmlFor="inputUserPassword">Lösenord</label>
-                    <input type="password" id="inputUserPassword"></input>
-                    <button type="submit">Registera konto</button>
-                </form>
-            </Container>
+                {
+                    register ? 
+                    <Form onSubmit={onLogInSubmit}>
+                        <FormText>Logga In</FormText>
+                        <FormLabel htmlFor="inputUserName">Användarnamn</FormLabel>
+                        <FormInput type="text" id="inputUserName"></FormInput>
+                        <FormLabel htmlFor="inputUserPassword">Lösenord</FormLabel>
+                        <FormInput type="password" id="inputUserPassword"></FormInput>
+                        <FormBtn type="submit">Logga In</FormBtn>
+                        <div><p>En ny användare?</p><FakeLink onClick={() => setRegister(!register)} >Registera mig!</FakeLink></div>
+                 </Form> : 
+                 <Form onSubmit={onRegisterSubmit}>
+                    <FormText>Registera</FormText>
+                    <FormLabel htmlFor="inputUserName">Användarnamn</FormLabel>
+                    <FormInput type="text" id="inputUserName"></FormInput>
+                    <FormLabel htmlFor="inputUserPassword">Lösenord</FormLabel>
+                    <FormInput type="password" id="inputUserPassword"></FormInput>
+                    <FormBtn type="submit">Registera Konto</FormBtn>
+                    <div><p>Inte en ny användare?</p><FakeLink onClick={() => setRegister(!register)} >Logga in mig!</FakeLink></div>
+                </Form>
+                }
+                
 
-            
+            </Container>
         </BackgroundBox>
     )
 }
