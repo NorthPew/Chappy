@@ -54,8 +54,8 @@ const SideHeader = () => {
     return (
         <NavBody>
             <NavLinkBtn onClick={() => setIsOnGroup(false)} to="/" title="Start">
-            <span className="material-symbols-outlined">
-                    chat
+                <span className="material-symbols-outlined">
+                        chat
                 </span> 
             </NavLinkBtn>
             {

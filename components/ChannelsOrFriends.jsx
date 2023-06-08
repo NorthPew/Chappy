@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../src/ContextRoot";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Panel = styled.div`
     width: 190px;
@@ -16,6 +17,14 @@ const Panel = styled.div`
     row-gap: 7.5px;
     background-color:#282b30;
     color: #424549;
+    position: relative;
+`
+
+const PanelLink = styled(Link)`
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    text-decoration: none;
 `
 
 function ChannelsOrFriends() {
@@ -24,8 +33,10 @@ function ChannelsOrFriends() {
         <Panel>
             {
                 isOnGroup ?
-                <p>Chat 1</p> :
-                <p>Friend 1</p>
+                <>
+                    <PanelLink to="/">Chat 1</PanelLink>
+                    <PanelLink to="/">Chat 2<span className="material-symbols-outlined">lock</span></PanelLink>
+                </> : <p>Friend 1</p>
             }
         </Panel>
 

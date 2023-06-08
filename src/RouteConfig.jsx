@@ -13,11 +13,21 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <Start />
-                
             },
             {
                 path: '/chappy',
-                element: <GroupView  />
+                element: <GroupView  />,
+                children: [
+                    {
+                        path: '/chappy/chat1',
+                        // element: Chat 1 here!
+                    },
+                    {
+
+                    }
+                    
+
+                ]
             }
         ]
     }
