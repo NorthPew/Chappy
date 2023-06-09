@@ -6,7 +6,7 @@ import Start from "./routes/Start";
 import GroupView from "./routes/GroupView";
 
 // Group Chat Routes
-import GroupChatOneView from "./routes/group routes/GroupChatOneView";
+import GroupChatOneView, {loader  as GroupChatOneLoader} from "./routes/group routes/GroupChatOneView";
 import GroupChatTwoView from "./routes/group routes/GroupChatTwoView";
 
 
@@ -25,7 +25,8 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: '/chappy/',
-                        element: <GroupChatOneView />
+                        element: <GroupChatOneView />,
+                        loader: GroupChatOneLoader
                     },
                     {
                         path: '/chappy/private',

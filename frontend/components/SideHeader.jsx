@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { UserContext } from "../ContextRoot"
 import { useContext } from "react";
+import AccountPanel from "./AccountPanel";
 
 
 const NavBody = styled.nav`
@@ -52,18 +53,22 @@ const SideHeader = () => {
     const {isLoggedIn, setIsOnGroup} = useContext(UserContext);
 
     return (
-        <NavBody>
-            <NavLinkBtn onClick={() => setIsOnGroup(false)} to="/" title="Start">
-                <span className="material-symbols-outlined">
-                        chat
-                </span> 
-            </NavLinkBtn>
-            <NavLinkBtn onClick={() => setIsOnGroup(true)} to="/chappy" title="Chappy | Lättåtkomliga gruppchatten">
-                <span className="material-symbols-outlined">
-                    public
-                </span>
-            </NavLinkBtn>
+        <>
+            <NavBody>
+                <NavLinkBtn onClick={() => setIsOnGroup(false)} to="/" title="Start">
+                    <span className="material-symbols-outlined">
+                            chat
+                    </span> 
+                </NavLinkBtn>
+                <NavLinkBtn onClick={() => setIsOnGroup(true)} to="/chappy" title="Chappy | Lättåtkomliga gruppchatten">
+                    <span className="material-symbols-outlined">
+                        public
+                    </span>
+                </NavLinkBtn>
         </NavBody>
+        <AccountPanel />
+        </>
+
     )
 }
 
