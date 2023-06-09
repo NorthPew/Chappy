@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext } from "../src/ContextRoot"
+import { UserContext } from "../ContextRoot"
 import { useContext } from "react";
 
 

@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 
 // Routes
-import Root from "../routes/Root";
-import Start from "../routes/Start";
-import GroupView from "../routes/GroupView";
+import Root from "./routes/Root";
+import Start from "./routes/Start";
+import GroupView from "./routes/GroupView";
 
 // Group Chat Routes
-import GroupChatOneView from "../routes/group routes/GroupChatOneView";
-import GroupChatTwoView from "../routes/group routes/GroupChatTwoView";
+import GroupChatOneView from "./routes/group routes/GroupChatOneView";
+import GroupChatTwoView from "./routes/group routes/GroupChatTwoView";
 
 
 const router = createBrowserRouter([

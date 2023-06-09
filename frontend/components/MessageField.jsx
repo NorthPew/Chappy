@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../src/ContextRoot";
+import { UserContext } from "../ContextRoot";
 import styled from "styled-components";
 
 const MessageWrapper = styled.div`
