@@ -42,7 +42,7 @@ function ChannelsOrFriends() {
             {
                 isOnGroup ?
                 <>
-                    <PanelLink to="/chappy"># Public Chat</PanelLink>
+                    <PanelLink to="/chappy/"># Public Chat</PanelLink>
                     <PanelLink to="/chappy/private"># Private Chat<span className="material-symbols-outlined">lock</span></PanelLink>
                 </> : <p>Friend 1</p>
             }

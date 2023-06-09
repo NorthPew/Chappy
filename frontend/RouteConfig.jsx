@@ -24,7 +24,7 @@ const router = createBrowserRouter([
                 element: <GroupView  />,
                 children: [
                     {
-                        path: '/chappy',
+                        path: '/chappy/',
                         element: <GroupChatOneView />
                     },
                     {
