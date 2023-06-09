@@ -5,5 +5,28 @@
       "username": "Hajime",
       "password": "123"
     }
-  ]
+  ],
+    "messages": {
+      "groups": {
+        "chappy": {
+          "channels": {
+            "one": [
+              {
+                "id": 1,
+                "content": "Hello this is a test message!",
+                "time": "14:28",
+                "sender": [
+                  {
+                    "id": 8144,
+                    "username": "Hajime"
+                  }
+                ]
+              }
+            ],
+            "two": []
+          }
+        }
+      },
+      "dms": {}
+    }
 }
