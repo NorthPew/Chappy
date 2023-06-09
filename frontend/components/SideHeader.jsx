@@ -58,16 +58,6 @@ const SideHeader = () => {
                         chat
                 </span> 
             </NavLinkBtn>
-            {
-                isLoggedIn && (
-                    <>
-                        <NavLinkBtn>
-                            Testperson
-                        </NavLinkBtn>
-                        <HorizontalLine />
-                    </>
-                )
-            }
             <NavLinkBtn onClick={() => setIsOnGroup(true)} to="/chappy" title="Chappy | Lättåtkomliga gruppchatten">
                 <span className="material-symbols-outlined">
                     public
