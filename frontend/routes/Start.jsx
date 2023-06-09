@@ -1,7 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../ContextRoot";
 import styled from "styled-components";
 
+
+import loginUser from "../data/loginUser";
+
+const sessionStorageKey = 'jwt-session'
 
 // Login or Register
 import ice from "../images/background.jpg"
@@ -75,16 +79,47 @@ function UserStart() {
 }
 
 function LoginOrRegister() {
-    const [register, setRegister] = useState(false)
-    const {isLoggedIn, setIsLoggedIn} = useContext(UserContext);
+    const [userName, setUserName] = useState("");
+    const [userPassword, setUserPassword] = useState("");
 
-    function onLogInSubmit(event) {
+    const [register, setRegister] = useState(false)
+    const {setIsLoggedIn} = useContext(UserContext);
+
+    useEffect(() => {
+        if(sessionStorage.getItem(sessionStorageKey)) {
+            setIsLoggedIn(true)
+        }
+    })
+
+    async function onLogInSubmit(event) {
         event.preventDefault()
-        setIsLoggedIn(true)
+
+        const loginStatus = await loginUser({username: userName, password: userPassword}) 
+
+        console.log(loginStatus.loggedIn);
+
+        if (loginStatus.loggedIn == "Success" ) {
+
+            let jwt = loginStatus.token
+            sessionStorage.setItem(sessionStorageKey, jwt)
+
+            setIsLoggedIn(true)
+            return
+        }
+
+
     }
 
     function onRegisterSubmit(event) {
         event.preventDefault()
+    }
+
+    const handleUserNameChange = (e) => {
+        setUserName(e.target.value)
+    }
+
+    const handleUserPasswordChange = (e) => {
+        setUserPassword(e.target.value)
     }
 
     return (
@@ -95,18 +130,18 @@ function LoginOrRegister() {
                     <Form onSubmit={onLogInSubmit}>
                         <FormText>Logga In</FormText>
                         <FormLabel htmlFor="inputUserName">Användarnamn</FormLabel>
-                        <FormInput type="text" id="inputUserName"></FormInput>
+                        <FormInput value={userName} onChange={handleUserNameChange} type="text" id="inputUserName"></FormInput>
                         <FormLabel htmlFor="inputUserPassword">Lösenord</FormLabel>
-                        <FormInput type="password" id="inputUserPassword"></FormInput>
+                        <FormInput value={userPassword} onChange={handleUserPasswordChange} type="password" id="inputUserPassword"></FormInput>
                         <FormBtn type="submit">Logga In</FormBtn>
                         <div><p>En ny användare?</p><FakeLink onClick={() => setRegister(!register)} >Registera mig!</FakeLink></div>
                  </Form> : 
                  <Form onSubmit={onRegisterSubmit}>
                     <FormText>Registera</FormText>
                     <FormLabel htmlFor="inputUserName">Användarnamn</FormLabel>
-                    <FormInput type="text" id="inputUserName"></FormInput>
+                    <FormInput value={userName} onChange={handleUserNameChange} type="text" id="inputUserName"></FormInput>
                     <FormLabel htmlFor="inputUserPassword">Lösenord</FormLabel>
-                    <FormInput type="password" id="inputUserPassword"></FormInput>
+                    <FormInput value={userPassword} onChange={handleUserPasswordChange} type="password" id="inputUserPassword"></FormInput>
                     <FormBtn type="submit">Registera Konto</FormBtn>
                     <div><p>Inte en ny användare?</p><FakeLink onClick={() => setRegister(!register)} >Logga in mig!</FakeLink></div>
                 </Form>
