@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 
 import loginUser from "../data/loginUser";
+import authorize from "../data/authorize";
 
 // Login or Register
 import ice from "../images/background.jpg"
@@ -95,10 +96,22 @@ function LoginOrRegister() {
         if (loginStatus.loggedIn == "Success" ) {
 
             let jwt = loginStatus.token
-            sessionStorage.setItem(sessionStorageKey, jwt)
+            sessionStorage.setItem(sessionStorageKey, 'Bearer: ' + jwt)
 
-            setIsLoggedIn(true)
-            return
+            let check = authorize(sessionStorage.getItem(sessionStorageKey))
+
+            console.log(check);
+
+            if (check.tokenMessage = "Du är autentiserad") {
+
+                setIsLoggedIn(true)
+
+                return
+            }
+
+
+        } else {
+            console.log('Gick inte att logga in!');
         }
 
 

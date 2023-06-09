@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import authorize from "./data/authorize";
 
 export const UserContext = createContext()
 
@@ -9,7 +10,15 @@ const ContextRoot = ({children}) => {
     // If logged in
     useEffect(() => {
         if(sessionStorage.getItem(sessionStorageKey)) {
-            setIsLoggedIn(true)
+
+            let check = authorize(sessionStorage.getItem(sessionStorageKey))
+
+            if (check.tokenMessage = "Du är autentiserad") {
+
+                setIsLoggedIn(true)
+
+                return
+            }
         }
     })
 
