@@ -5,8 +5,6 @@ import styled from "styled-components";
 
 import loginUser from "../data/loginUser";
 
-const sessionStorageKey = 'jwt-session'
-
 // Login or Register
 import ice from "../images/background.jpg"
 
@@ -83,13 +81,9 @@ function LoginOrRegister() {
     const [userPassword, setUserPassword] = useState("");
 
     const [register, setRegister] = useState(false)
-    const {setIsLoggedIn} = useContext(UserContext);
+    const {setIsLoggedIn, sessionStorageKey} = useContext(UserContext);
 
-    useEffect(() => {
-        if(sessionStorage.getItem(sessionStorageKey)) {
-            setIsLoggedIn(true)
-        }
-    })
+
 
     async function onLogInSubmit(event) {
         event.preventDefault()

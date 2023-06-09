@@ -1,8 +1,17 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext()
 
+const sessionStorageKey = 'jwt-session'
+
 const ContextRoot = ({children}) => {
+    
+    // If logged in
+    useEffect(() => {
+        if(sessionStorage.getItem(sessionStorageKey)) {
+            setIsLoggedIn(true)
+        }
+    })
 
     // User Login
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -11,7 +20,7 @@ const ContextRoot = ({children}) => {
     const [isOnGroup, setIsOnGroup] = useState(false)
 
     return (
-        <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
+        <UserContext.Provider value={{sessionStorageKey, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
             {children}
         </UserContext.Provider>
     )
