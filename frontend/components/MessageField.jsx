@@ -24,13 +24,13 @@ const MessageInput = styled.input`
 
 
 function MessageField() {
-    const {isLoggedIn, messageNavigate} = useContext(UserContext);
+    const {isLoggedIn, whereToSendMessageToView} = useContext(UserContext);
 
     let onSpecificView;
 
-    if (messageNavigate === "chappy-groupchat-one") {
+    if (whereToSendMessageToView === "chappy-groupchat-one") {
         onSpecificView = "Public Chat"
-    } else if (messageNavigate === "chappy-groupchat-two") {
+    } else if (whereToSendMessageToView === "chappy-groupchat-two") {
         onSpecificView = "Private Chat"
     }
 

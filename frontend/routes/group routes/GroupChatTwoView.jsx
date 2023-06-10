@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { UserContext } from "../../ContextRoot";
 
 function GroupChatTwoView () {
-    const {setMessageNavigate} = useContext(UserContext);
+    const {setWhereToSendMessageToView} = useContext(UserContext);
 
-    setMessageNavigate("chappy-groupchat-two")
+    setWhereToSendMessageToView("chappy-groupchat-two")
     return (
         <>
             <p>This is a private chat</p>

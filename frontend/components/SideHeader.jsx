@@ -47,10 +47,8 @@ const HorizontalLine = styled.div`
     border-radius: 7.5px;
 `
 
-// Include a map function to display buttons for all DMs!
-
 const SideHeader = () => {
-    const {isLoggedIn, setIsOnGroup} = useContext(UserContext);
+    const {setIsOnGroup} = useContext(UserContext);
 
     return (
         <>
@@ -60,6 +58,7 @@ const SideHeader = () => {
                             chat
                     </span> 
                 </NavLinkBtn>
+                <HorizontalLine />
                 <NavLinkBtn to="/chappy" title="Chappy | Lättåtkomliga gruppchatten">
                     <span className="material-symbols-outlined">
                         public

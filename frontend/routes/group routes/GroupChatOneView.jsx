@@ -50,9 +50,9 @@ export const loader = () => getMessages('chappy', 'one')
 function GroupChatOneView () {
     const messageData = useLoaderData();
 
-    const {setMessageNavigate} = useContext(UserContext);
+    const {setWhereToSendMessageToView} = useContext(UserContext);
 
-    setMessageNavigate("chappy-groupchat-one")
+    setWhereToSendMessageToView("chappy-groupchat-one")
 
     return (
         <MessageBoard>
