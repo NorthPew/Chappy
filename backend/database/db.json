@@ -6,6 +6,17 @@
       "password": "123"
     }
   ],
+  "routes": 
+    {
+      "groups": [
+        {
+          "id": 1,
+          "name": "chappy",
+          "title": "Chappy | Lättåtkomliga gruppchatten",
+          "icon": "public"
+        }
+      ]
+    },
   "messages": {
     "groups": {
       "chappy": {

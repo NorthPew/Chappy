@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { UserContext } from "../ContextRoot"
 import { useContext } from "react";
 import AccountPanel from "./AccountPanel";
-import { getGroups } from "../data/getGroups";
 
-export const loader = () => getGroups('group')
+import loader from "../routes/GroupView"
 
 const NavBody = styled.nav`
     display: flex;
@@ -54,6 +53,7 @@ const SideHeader = () => {
 
     const groupData = useLoaderData();
 
+    console.log(groupData);
     return (
         <>
             <NavBody>
@@ -64,13 +64,13 @@ const SideHeader = () => {
                 </NavLinkBtn>
                 <HorizontalLine />
                 {
-                    //groupData.map((group) => {
-                    //    <NavLinkBtn to={`${group}`} title="Chappy | Lättåtkomliga gruppchatten">
-                    //    <span className="material-symbols-outlined">
-                    //        public
-                    //    </span>
-                    //</NavLinkBtn>
-                    //})
+                    groupData.map((group) => (
+                        <NavLinkBtn to={`/${group.name}`} title={group.title}>
+                            <span className="material-symbols-outlined">
+                                {group.icon}
+                            </span> 
+                        </NavLinkBtn>
+                    ))
                 }
 
         </NavBody>

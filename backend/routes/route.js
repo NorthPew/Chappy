@@ -10,7 +10,11 @@ router.get('/:route', async (req, res) => {
     await db.read()
 
     if (route !== "DM") {
-        res.send(db.data.messages.groups)
+        const groups = db.data.routes.groups.map((group) => {
+            return group;
+        });
+
+    res.send(groups);
     } else {
         
     }
