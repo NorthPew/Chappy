@@ -3,10 +3,10 @@ import { createBrowserRouter } from "react-router-dom";
 // Routes
 import Root from "./routes/Root";
 import Start from "./routes/Start";
-import GroupView from "./routes/GroupView";
+import GroupView, {loader as groupsLoader} from "./routes/GroupView";
 
 // Group Chat Routes
-import GroupChatOneView, {loader  as GroupChatOneLoader} from "./routes/group routes/GroupChatOneView";
+import GroupChatOneView, {loader as GroupChatOneLoader} from "./routes/group routes/GroupChatOneView";
 import GroupChatTwoView from "./routes/group routes/GroupChatTwoView";
 
 
@@ -22,6 +22,7 @@ const router = createBrowserRouter([
             {
                 path: '/chappy',
                 element: <GroupView  />,
+                loader: groupsLoader,
                 children: [
                     {
                         path: '/chappy/',

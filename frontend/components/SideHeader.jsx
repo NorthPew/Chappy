@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import styled from "styled-components";
 import { UserContext } from "../ContextRoot"
 import { useContext } from "react";
 import AccountPanel from "./AccountPanel";
+import { getGroups } from "../data/getGroups";
 
+export const loader = () => getGroups('group')
 
 const NavBody = styled.nav`
     display: flex;
@@ -50,6 +52,8 @@ const HorizontalLine = styled.div`
 const SideHeader = () => {
     const {setIsOnGroup} = useContext(UserContext);
 
+    const groupData = useLoaderData();
+
     return (
         <>
             <NavBody>
@@ -59,11 +63,16 @@ const SideHeader = () => {
                     </span> 
                 </NavLinkBtn>
                 <HorizontalLine />
-                <NavLinkBtn to="/chappy" title="Chappy | Lättåtkomliga gruppchatten">
-                    <span className="material-symbols-outlined">
-                        public
-                    </span>
-                </NavLinkBtn>
+                {
+                    //groupData.map((group) => {
+                    //    <NavLinkBtn to={`${group}`} title="Chappy | Lättåtkomliga gruppchatten">
+                    //    <span className="material-symbols-outlined">
+                    //        public
+                    //    </span>
+                    //</NavLinkBtn>
+                    //})
+                }
+
         </NavBody>
         <AccountPanel />
         </>

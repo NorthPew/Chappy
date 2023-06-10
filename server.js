@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url'
 // Routers
 import userRouter from './backend/routes/user.js'
 import messageRouter from './backend/routes/message.js'
+import routeRouter from './backend/routes/route.js'
 
 // Configuration
 const PORT = 666
@@ -33,6 +34,8 @@ app.use(express.static(dist))
 app.use('/api/user', userRouter)
 
 app.use('/api/message', messageRouter)
+
+app.use('/api/route', routeRouter)
 
 app.get('*', (req, res) => {
     res.sendFile(join(dist, 'index.html'))
