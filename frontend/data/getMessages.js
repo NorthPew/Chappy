@@ -9,8 +9,6 @@ async function getMessages(route, channel) {
         } 
     }
     
-    console.log(`Getting messages from group: ${route}, channel: ${channel}...`);
-
     const response = await fetch(API_URL + `message/${route}/${channel}`, options)
 
     const data = await response.json()
