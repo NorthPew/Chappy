@@ -8,17 +8,16 @@ async function getMessages(route, channel) {
             'Content-Type': 'application/json',
         } 
     }
+    
+    console.log(`Getting messages from group: ${route}, channel: ${channel}...`);
 
-    if (route === 'chappy') {
-        console.log('Getting messages from group chappy...');
-        if (channel === 'one') {
-            console.log('Getting messages from group chappy, channel one');
-            const response = await fetch(API_URL + 'message/chappy/one', options)
-            const data = await response.json()
-            console.log('Response: ', data);
-            return data
-        }
-    }
+    const response = await fetch(API_URL + `message/${route}/${channel}`, options)
+
+    const data = await response.json()
+
+    console.log('Response: ', data);
+
+    return data
 }
 
 export {getMessages}
