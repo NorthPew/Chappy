@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../ContextRoot";
 
 function GroupChatTwoView () {
-    const {setWhereToSendMessageToView} = useContext(UserContext);
-
-    setWhereToSendMessageToView("chappy-groupchat-two")
+    const {selectSpecificView, setSelectSpecificView} = useContext(UserContext);
+    
+    useEffect(() => { setSelectSpecificView({
+        "route": "chappy",
+        "channel": "two"
+    })}, [])
+    
     return (
         <>
             <p>This is a private chat</p>

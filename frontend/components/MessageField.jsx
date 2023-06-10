@@ -24,23 +24,24 @@ const MessageInput = styled.input`
 
 
 function MessageField() {
-    const {isLoggedIn, whereToSendMessageToView} = useContext(UserContext);
+    const {isLoggedIn, selectSpecificView} = useContext(UserContext);
 
     let onSpecificView;
 
-    if (whereToSendMessageToView === "chappy-groupchat-one") {
-        onSpecificView = "Public Chat"
-    } else if (whereToSendMessageToView === "chappy-groupchat-two") {
-        onSpecificView = "Private Chat"
+    if (selectSpecificView.route === 'chappy' && selectSpecificView.channel === 'one') {
+        onSpecificView = 'Public Chat'
+    } else if (selectSpecificView.route === 'chappy' && selectSpecificView.channel === 'two') {
+        onSpecificView = 'Private Chat'
     }
 
     return (
-        <MessageWrapper>
-       { isLoggedIn ?
-        <MessageInput type="text" placeholder={`Send a message to ${onSpecificView}`} ></MessageInput>
-        : <MessageInput type="text" disabled placeholder="You need to be logged in to send messages"></MessageInput>
-    }
+    <MessageWrapper>
+        { isLoggedIn ?
+            <MessageInput type="text" placeholder={`Send a message to ${onSpecificView}`} ></MessageInput>
+            : <MessageInput type="text" disabled placeholder="You need to be logged in to send messages"></MessageInput>
+        }
     </MessageWrapper>
+
     )
 }
 

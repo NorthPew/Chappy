@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom"
 import { getMessages } from "../../data/getMessages"
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../ContextRoot";
 
 const MessageSender = styled.p`
@@ -50,9 +50,13 @@ export const loader = () => getMessages('chappy', 'one')
 function GroupChatOneView () {
     const messageData = useLoaderData();
 
-    const {setWhereToSendMessageToView} = useContext(UserContext);
+    const {selectSpecificView, setSelectSpecificView} = useContext(UserContext);
+    
+    useEffect(() => { setSelectSpecificView({
+        "route": "chappy",
+        "channel": "one"
+    })}, [])
 
-    setWhereToSendMessageToView("chappy-groupchat-one")
 
     return (
         <MessageBoard>

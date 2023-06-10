@@ -32,7 +32,7 @@ const ContextRoot = ({children}) => {
     // If on a group and on a specific channel, display a different text on message field
     const [whereToSendMessageToView, setWhereToSendMessageToView] = useState("")
 
-    // To capture where user is at, route: group or DM, channel: group channel or specific user
+    // To capture where user is at, route: group (Chappy) or DM, channel: group channel or specific user chat
     const [selectSpecificView, setSelectSpecificView] = useState({})
 
     return (
