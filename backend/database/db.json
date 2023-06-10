@@ -6,27 +6,40 @@
       "password": "123"
     }
   ],
-    "messages": {
-      "groups": {
-        "chappy": {
-          "channels": {
-            "one": [
-              {
-                "id": 1,
-                "content": "Hello this is a test message!",
-                "time": "14:28",
-                "sender": [
-                  {
-                    "id": 8144,
-                    "username": "Hajime"
-                  }
-                ]
-              }
-            ],
-            "two": []
-          }
+  "messages": {
+    "groups": {
+      "chappy": {
+        "channels": {
+          "one": [
+            {
+              "id": 1,
+              "content": "Hello this is a test message!",
+              "time": "14:28",
+              "date": "2023-06-09",
+              "sender": [
+                {
+                  "id": 8144,
+                  "username": "Hajime"
+                }
+              ]
+            },
+            {
+              "id": 699549,
+              "content": "This was sent using Insomnia!",
+              "time": "14:00",
+              "date": "2023-06-10",
+              "sender": [
+                {
+                  "id": 8144,
+                  "username": "Hajime"
+                }
+              ]
+            }
+          ],
+          "two": []
         }
-      },
-      "dms": {}
-    }
+      }
+    },
+    "dms": {}
+  }
 }
