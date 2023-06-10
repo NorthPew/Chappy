@@ -9,16 +9,15 @@ async function sendMessage(route, channel, message) {
         body: JSON.stringify(message)
     };
 
-    if (route === 'chappy') {
-        console.log('Getting messages from group chappy...');
-        if (channel === 'one') {
-            console.log('Getting messages from group chappy, channel one');
-            const response = await fetch(API_URL + 'message/chappy/one', options)
-            const data = await response.json()
-            console.log('Response: ', data);
-            return data
-        }
-    }
+
+    console.log(`sending to GROUP/DM: ${route}, channel/user: ${channel}`);
+
+    const response = await fetch(API_URL + `message/${route}/${channel}`, options)
+    const data = await response.json()
+    
+    console.log('Response: ', data);
+
+    return data
 }
 
 export {sendMessage}
