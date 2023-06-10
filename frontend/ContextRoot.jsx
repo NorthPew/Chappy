@@ -28,8 +28,10 @@ const ContextRoot = ({children}) => {
     // User on group page or friends page
     const [isOnGroup, setIsOnGroup] = useState(false)
 
+    const [messageNavigate, setMessageNavigate] = useState("")
+
     return (
-        <UserContext.Provider value={{sessionStorageKey, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
+        <UserContext.Provider value={{sessionStorageKey, messageNavigate, setMessageNavigate, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
             {children}
         </UserContext.Provider>
     )

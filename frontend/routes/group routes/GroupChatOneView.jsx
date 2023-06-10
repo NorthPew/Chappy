@@ -1,6 +1,8 @@
 import { useLoaderData } from "react-router-dom"
 import { getMessages } from "../../data/getMessages"
 import styled from "styled-components";
+import { useContext } from "react";
+import { UserContext } from "../../ContextRoot";
 
 const MessageSender = styled.p`
     font-size: 18px;
@@ -43,8 +45,15 @@ const MessageListElem = styled.li`
 
 export const loader = () => getMessages('chappy', 'one')
 
+
+
 function GroupChatOneView () {
     const messageData = useLoaderData();
+
+    const {setMessageNavigate} = useContext(UserContext);
+
+    setMessageNavigate("chappy-groupchat-one")
+
     return (
         <MessageBoard>
             {messageData.map((message) => (

@@ -22,13 +22,23 @@ const MessageInput = styled.input`
     outline: none;
 `
 
+
 function MessageField() {
-    const {isLoggedIn} = useContext(UserContext);
+    const {isLoggedIn, messageNavigate} = useContext(UserContext);
+
+    let onSpecificView;
+
+    if (messageNavigate === "chappy-groupchat-one") {
+        onSpecificView = "Public Chat"
+    } else if (messageNavigate === "chappy-groupchat-two") {
+        onSpecificView = "Private Chat"
+    }
+
     return (
         <MessageWrapper>
        { isLoggedIn ?
-        <MessageInput type="text" placeholder="Skicka ett meddelande" ></MessageInput>
-        : <MessageInput type="text" disabled placeholder="Du måste vara inloggad för att skicka ett meddelande"></MessageInput>
+        <MessageInput type="text" placeholder={`Send a message to ${onSpecificView}`} ></MessageInput>
+        : <MessageInput type="text" disabled placeholder="You need to be logged in to send messages"></MessageInput>
     }
     </MessageWrapper>
     )
