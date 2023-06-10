@@ -9,24 +9,22 @@ const db = getDb();
 router.get('/:route/:channel', async (req, res) => {
     // Route will be a DM or group
     // Channel will be specific chat in a group or DM for a chat with a user
-    let route = req.params.route
-    let channel = req.params.channel
+    let route = req.params.route // Group or DM
+    let channel = req.params.channel // Public Chat or Hajime
+
+
+    // combinedChat is route and channel combined
+    let combinedChat;
 
     await db.read()
+    if (route !== 'DM') {
+        combinedChat = db.data.messages.groups[route].channels[channel]
 
-    if (route === 'chappy' ) {
-       
-        let chappyChatOne = db.data.messages.groups.chappy.channels.one
-        let chappyChatTwo = db.data.messages.groups.chappy.channels.two
+        res.send(combinedChat)
+    } else {
+        combinedChat = db.data.messages.dms[route].channels[channel]
 
-        if (channel === 'one') {
-            res.send(chappyChatOne)
-        } else if (channel === 'two') {
-            res.send(chappyChatTwo)
-        }
-    }
-    if (route === 'DM') {
-            // Channel will be a user
+        res.send(combinedChat)
     }
 })
 
@@ -59,20 +57,58 @@ router.post('/:route/:channel', async (req, res) => {
 
     await db.read()
 
-    if (route === 'chappy') {
+    let combinedChat;
 
-        let chappyChatOne = db.data.messages.groups.chappy.channels.one
-        let chappyChatTwo = db.data.messages.groups.chappy.channels.two
+    // Checks if the message will be sent to group first or DM second
+    if (route !== 'DM') {
 
-        if (channel === 'one') {
-            chappyChatOne.push(newMessage)
+        // If a channel doesn't already exist, create a new one
+        if (!db.data.messages.groups[route].channels[channel]) {
+            
+            let createNewChannel = db.data.messages.groups[route].channels;
+            createNewChannel[channel] = [];
+
             await db.write()
-            res.status(200).send(newMessage)
 
-        } else if (channel === 'two') {
-            chappyChatTwo.push(newMessage)
+            combinedChat = db.data.messages.groups[route].channels[channel]
+
+            combinedChat.push(newMessage)
+    
             await db.write()
-            res.status(200).send(newMessage)
+    
+            res.status(200).send(combinedChat)
+        } else {
+            combinedChat = db.data.messages.groups[route].channels[channel]
+
+            combinedChat.push(newMessage)
+    
+            await db.write()
+    
+            res.status(200).send(combinedChat)
+        }
+    } else {
+
+        if(!db.data.messages.dms[route].channels[channel]) {
+            let createNewUserChannel = db.data.messages.dms[route].channels;
+            createNewUserChannel[channel] = [];
+
+            await db.write()
+
+            combinedChat = db.data.messages.dms[route].channels[channel]
+
+            combinedChat.push(newMessage)
+    
+            await db.write()
+
+            res.status(200).send(combinedChat)
+        } else {
+            combinedChat = db.data.messages.dms[route].channels[channel]
+
+            combinedChat.push(newMessage)
+    
+            await db.write()
+    
+            res.status(200).send(combinedChat)
         }
     }
 })
