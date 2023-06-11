@@ -72,6 +72,11 @@ router.post('/signup', async (req, res) => {
         password: userPassword
     }
 
+    let addUserRoute = {
+        id: createUser.id,
+        userName: createUser.username
+    }
+
     if (!req.body || !userName || !userPassword) {
         res.status(400).send({ message: 'Användarnamn och lösenord måste vara ifyllda!'})
 
@@ -79,6 +84,10 @@ router.post('/signup', async (req, res) => {
     }
 
     db.data.users.push(createUser)
+
+    // Adding user to startpage
+    db.data.route.users.push(addUserRoute)
+
     await db.write()
     res.status(200).send(createUser)
 })

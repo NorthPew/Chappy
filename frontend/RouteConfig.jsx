@@ -9,7 +9,7 @@ import {loader as groupsLoader}  from "./components/SideHeader";
 import GroupChannelView, {loader as channelsLoader} from "./routes/GroupChannelView";
 
 
-import Start from "./routes/Start";
+import Start, {loader as usersLoader} from "./routes/Start";
 import GroupView from "./routes/GroupView";
 
 
@@ -21,7 +21,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Start />
+                element: <Start />,
+                loader: usersLoader
             },
             {
                 path: '/group/:name',

@@ -65,47 +65,62 @@ const GroupTitle = styled.h1`
     font-weight: 600;
 `
 
-function ChannelsOrFriends({findGroup}) {
-    const {isLoggedIn, isOnGroup} = useContext(UserContext);
+function FriendsPanel () {
+    return (
+        <>
+            <p>DMs</p>
+            {
+                
+            }
+        </>
+    )
+}
+
+function ChannelsPanel ({findGroup}) {
+    const {isLoggedIn} = useContext(UserContext);
 
     const allChannels = useLoaderData()
+    return (
+        <>
+        <GroupTitleBox><GroupTitle>{findGroup.title}</GroupTitle></GroupTitleBox>
+            {
+                !isLoggedIn ?
+                allChannels.map((group) => (
+                    <>
+                        {Object.values(group.channels).flat().map((channel) => (
+                            channel.public ? (
+                                <PanelLink key={channel.id} to={`/group/${group.name}/channel/${channel.id}`}>
+                                    {channel.title}
+                                </PanelLink>
+                            ) : (
+                                <DisabledPanelLink key={channel.id}>
+                                    {`${channel.title} 🔒`}
+                                </DisabledPanelLink>
+                            )
+                        ))}
+                    </>
+                ))
+            : allChannels.map((group) => (
+                <>
+                    {Object.values(group.channels).flat().map((channel) => (
+                            <PanelLink key={channel.id} to={`/group/${group.name}/channel/${channel.id}`}>
+                                {channel.title}
+                            </PanelLink>
+                        )
+                    )}
+                </>
+            )) }
+        </>
+    )
+}
 
-
-    console.log(findGroup);
+function ChannelsOrFriends({findGroup}) {
+    const {isOnGroup} = useContext(UserContext);
     return (
         <Panel>
             {
-                isOnGroup ?
-                <>
-                <GroupTitleBox><GroupTitle>{findGroup.title}</GroupTitle></GroupTitleBox>
-                    {
-                        !isLoggedIn ?
-                        allChannels.map((group) => (
-                            <>
-                                {Object.values(group.channels).flat().map((channel) => (
-                                    channel.public ? (
-                                        <PanelLink key={channel.id} to={`/group/${group.name}/channel/${channel.id}`}>
-                                            {channel.title}
-                                        </PanelLink>
-                                    ) : (
-                                        <DisabledPanelLink key={channel.id}>
-                                            {`${channel.title} 🔒`}
-                                        </DisabledPanelLink>
-                                    )
-                                ))}
-                            </>
-                        ))
-                    : allChannels.map((group) => (
-                        <>
-                            {Object.values(group.channels).flat().map((channel) => (
-                                    <PanelLink key={channel.id} to={`/group/${group.name}/channel/${channel.id}`}>
-                                        {channel.title}
-                                    </PanelLink>
-                                )
-                            )}
-                        </>
-                    )) }
-                </> : <p>Friend 1</p>
+                isOnGroup ? <ChannelsPanel findGroup={findGroup} />
+                : <FriendsPanel />
             }
         </Panel>
 

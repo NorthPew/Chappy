@@ -9,14 +9,18 @@ router.get('/:route', async (req, res) => {
     
     await db.read()
 
-    if (route !== "DM") {
+    if (route === "groups") {
         const groups = db.data.routes.groups.map((group) => {
             return group;
         });
 
     res.send(groups);
-    } else {
-        
+    } else if (route === "users") {
+        const users = db.data.routes.users.map((user) => {
+            return user;
+        });
+
+        res.send(users);
     }
 })
 
