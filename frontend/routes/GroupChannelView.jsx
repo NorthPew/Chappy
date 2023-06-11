@@ -43,7 +43,7 @@ const MessageListElem = styled.li`
     list-style-type: none;
 `
 
-export const loader = (groupName, channelId) => getMessages(groupName, channelId)
+export const loader = (groupName, groupChannel) => () => getMessages(groupName, groupChannel);
 
 function GroupChannelView() {
     const { name, id } = useParams();
