@@ -6,7 +6,7 @@ import { loader } from "./SideHeader";
 
 
 const Panel = styled.div`
-    width: 180px;
+    width: 10vw;
     height: calc(100vh - 51px);
     float: left;
     display: flex;

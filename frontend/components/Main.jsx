@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const MainBody = styled.main`
     height: calc(100% - 36px);
-    width: calc(100% - 54px);
+    width: 97vw;
     float: left;
     display: grid;
 `

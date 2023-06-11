@@ -9,7 +9,7 @@ export const loader = () => getRoutes('group')
 
 const NavBody = styled.nav`
     display: flex;
-    width: 54px;
+    width: 3vw;
     height: calc(100% - 51px);
     float: left;
     background-color: #1e2124;

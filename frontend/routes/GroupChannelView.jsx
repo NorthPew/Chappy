@@ -35,7 +35,9 @@ const MessageText = styled.p`
 
 const MessageBoard = styled.ul`
     padding-left: 7.5px;
-    width: calc(100vw - 326px);
+    height: 90vh;
+    overflow-y: scroll;
+    width: 84vw;
     float: left;
 `
 

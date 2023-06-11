@@ -12,7 +12,6 @@ const NavBody = styled.nav`
     display: grid;
     width: calc(100% - 15px);
     height: inherit;
-    position: fixed;
     top: 0;
     left: 0;
     background-color: #1e2124;

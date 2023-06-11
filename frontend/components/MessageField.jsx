@@ -5,14 +5,15 @@ import { sendMessage } from "../data/sendMessage";
 import { useState } from "react";
 
 const MessageWrapper = styled.div`
-    width: calc(100% - 254px);
-    height: 64px;
+    width: 86vw;
+    height: 10vh;
     display: grid;
     place-content: center;
     float: left;
     position: absolute;
     bottom: 0px;
-    margin-left: 200px;
+    margin-left: 11vw;
+    background-color: #36393E;
 `
 
 const MessageInput = styled.input`
