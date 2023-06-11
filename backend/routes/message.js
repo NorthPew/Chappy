@@ -12,15 +12,20 @@ router.get('/:route/:channel', async (req, res) => {
     let route = req.params.route // Group or DM
     let channel = req.params.channel // Public Chat or Hajime
 
+    await db.read()
 
-    // combinedChat is route and channel combined
     let combinedChat;
 
-    await db.read()
     if (route !== 'DM') {
-        combinedChat = db.data.messages.groups[route].channels[channel]
+        if (!db.data.messages.groups.hasOwnProperty(route)) {
+            res.status(404).send({message: `Group or channel not found. Got: ROUTE: ${route} and CHANNEL: ${channel}`})
+        } else {
 
-        res.send(combinedChat)
+            // combinedChat is route and channel combined
+            combinedChat = db.data.messages.groups[route].channels[channel]
+
+            res.send(combinedChat) 
+        }
     } else {
         combinedChat = db.data.messages.dms[route].channels[channel]
 

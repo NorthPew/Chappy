@@ -37,7 +37,7 @@
     "groups": {
       "chappy": {
         "channels": {
-          "one": [
+          "1": [
             {
               "id": 1,
               "content": "Hello this is a test message!",
@@ -111,8 +111,8 @@
               ]
             }
           ],
-          "two": [],
-          "three": [
+          "2": [],
+          "3": [
             {
               "id": 695205,
               "content": "Insomnia is nice!",
