@@ -18,12 +18,14 @@
             {
               "id": 1,
               "name": "one",
-              "title": "# Public Chat"
+              "title": "# Public Chat",
+              "public": true
             },
             {
               "id": 2,
               "name": "two",
-              "title": "# Private Chat"
+              "title": "# Private Chat",
+              "public": false
             }
           ]
         }

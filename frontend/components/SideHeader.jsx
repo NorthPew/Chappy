@@ -66,7 +66,7 @@ const SideHeader = () => {
                 <HorizontalLine />
                 {
                     groupData.map((group) => (
-                        <NavLinkBtn to={`/${group.name}`} title={group.title}>
+                        <NavLinkBtn to={`/group/${group.id}`} title={group.title}>
                             <span className="material-symbols-outlined">
                                 {group.icon}
                             </span> 
