@@ -27,11 +27,13 @@ const router = createBrowserRouter([
                 path: '/group/:name',
                 element: <GroupView />,
                 loader: groupsLoader,
-            },
-            {
-                path: '/group/:name/channel/:id',
-                element: <GroupChannelView />,
-                loader: channelsLoader,
+                children: [
+                    {
+                        path: '/group/:name/channel/:id',
+                        element: <GroupChannelView />,
+                        loader: channelsLoader,
+                    }
+                ]
             }
         ]
     }
