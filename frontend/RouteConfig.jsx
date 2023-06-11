@@ -2,8 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 
 // Routes
 import Root from "./routes/Root";
+
+
+// Loader
+import {loader as groupsLoader}  from "./components/SideHeader";
+
 import Start from "./routes/Start";
-import GroupView, {loader as groupsLoader} from "./routes/GroupView";
+import GroupView from "./routes/GroupView";
 
 // Group Chat Routes
 import GroupChatOneView, {loader as GroupChatOneLoader} from "./routes/group routes/GroupChatOneView";
@@ -23,7 +28,6 @@ const router = createBrowserRouter([
             {
                 path: '/chappy',
                 element: <GroupView  />,
-                loader: groupsLoader,
                 children: [
                     {
                         path: '/chappy/',

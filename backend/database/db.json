@@ -13,7 +13,19 @@
           "id": 1,
           "name": "chappy",
           "title": "Chappy | Lättåtkomliga gruppchatten",
-          "icon": "public"
+          "icon": "public",
+          "channels": [
+            {
+              "id": 1,
+              "name": "one",
+              "title": "# Public Chat"
+            },
+            {
+              "id": 2,
+              "name": "two",
+              "title": "# Private Chat"
+            }
+          ]
         }
       ]
     },

@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { UserContext } from "../ContextRoot"
 import { useContext } from "react";
 import AccountPanel from "./AccountPanel";
+import { getRoutes } from "../data/getRoutes";
 
-import loader from "../routes/GroupView"
+export const loader = () => getRoutes('group')
 
 const NavBody = styled.nav`
     display: flex;
