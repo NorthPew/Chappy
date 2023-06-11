@@ -4,6 +4,8 @@ import { Outlet, useParams, useLoaderData } from "react-router-dom"
 import { useContext } from "react";
 import { UserContext } from "../ContextRoot";
 
+import { loader } from "../components/SideHeader";
+
 function GroupView() {
     const {setIsOnGroup} = useContext(UserContext);
 
@@ -22,7 +24,7 @@ function GroupView() {
     return (
         <div>
             <p>{group.title}</p>
-            <ChannelsOrFriends />
+            <ChannelsOrFriends loader={loader} />
             <Outlet />
             <MessageField />
         </div>

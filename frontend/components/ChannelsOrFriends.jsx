@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { UserContext } from "../ContextRoot";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
+import { loader } from "./SideHeader";
+
 
 const Panel = styled.div`
     width: 180px;
@@ -37,17 +39,24 @@ const PanelLink = styled(NavLink)`
 
 function ChannelsOrFriends() {
     const {isLoggedIn, isOnGroup} = useContext(UserContext);
+
+    const allChannels = useLoaderData()
+
     return (
         <Panel>
             {
                 isOnGroup ?
                 <>
-                    <PanelLink to="/chappy/"># Public Chat</PanelLink>
                     {
-                        isLoggedIn ? <PanelLink to="/chappy/private"># Private Chat</PanelLink> :
-                         <PanelLink to="/chappy/private"># Private Chat<span className="material-symbols-outlined">lock</span></PanelLink>
+                        allChannels.map((group) => (
+                            <>
+                                {Object.values(group.channels).flat().map((channel) => (
+                                    <PanelLink key={channel.id} to={`/group/${group.id}channel/${channel.id}`}>
+                                        {channel.title}</PanelLink>
+                                ))}
+                            </>
+                        ))
                     }
-                    
                 </> : <p>Friend 1</p>
             }
         </Panel>
