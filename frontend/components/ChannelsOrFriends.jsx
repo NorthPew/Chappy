@@ -37,17 +37,21 @@ const PanelLink = styled(NavLink)`
     }
 `
 
-function ChannelsOrFriends() {
+function ChannelsOrFriends(findGroup) {
     const {isLoggedIn, isOnGroup} = useContext(UserContext);
 
     const allChannels = useLoaderData()
 
+
+    console.log(findGroup);
     return (
         <Panel>
             {
                 isOnGroup ?
                 <>
+                <p>{findGroup.title}</p>
                     {
+                        
                         allChannels.map((group) => (
                             <>
                                 {Object.values(group.channels).flat().map((channel) => (

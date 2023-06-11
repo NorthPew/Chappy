@@ -4,17 +4,15 @@ import { Outlet, useParams, useLoaderData } from "react-router-dom"
 import { useContext } from "react";
 import { UserContext } from "../ContextRoot";
 
-import { loader } from "../components/SideHeader";
-
 function GroupView() {
     const {setIsOnGroup} = useContext(UserContext);
 
     const { name } = useParams()
     const allGroups = useLoaderData()
 
-    const group = allGroups.find(group => String(group.name) === name)
+    const findGroup = allGroups.find(group => String(group.name) === name)
     
-    if(!group) {
+    if(!findGroup) {
         return (
             <p>Denna grupp finns ej</p>
         )
@@ -23,8 +21,7 @@ function GroupView() {
     setIsOnGroup(true)
     return (
         <div>
-            <p>{group.title}</p>
-            <ChannelsOrFriends loader={loader} />
+            <ChannelsOrFriends findGroup={findGroup} />
             <Outlet />
             <MessageField />
         </div>
