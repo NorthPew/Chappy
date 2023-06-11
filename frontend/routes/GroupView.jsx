@@ -9,10 +9,10 @@ import { loader } from "../components/SideHeader";
 function GroupView() {
     const {setIsOnGroup} = useContext(UserContext);
 
-    const { id } = useParams()
+    const { name } = useParams()
     const allGroups = useLoaderData()
 
-    const group = allGroups.find(group => String(group.id) === id)
+    const group = allGroups.find(group => String(group.name) === name)
     
     if(!group) {
         return (

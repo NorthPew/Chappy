@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useParams } from "react-router-dom"
 import { getMessages } from "../../data/getMessages"
 import styled from "styled-components";
 import { useContext, useEffect } from "react";

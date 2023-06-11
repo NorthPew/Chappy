@@ -6,11 +6,12 @@ import Root from "./routes/Root";
 
 // Loader
 import {loader as groupsLoader}  from "./components/SideHeader";
-
+import GroupChannelView, {anotherLoader as channelsLoader} from "./routes/GroupChannelView";
 
 
 import Start from "./routes/Start";
 import GroupView from "./routes/GroupView";
+
 
 const router = createBrowserRouter([
     {
@@ -23,10 +24,18 @@ const router = createBrowserRouter([
                 element: <Start />
             },
             {
-                path: '/group/:id',
+                path: '/group/:name',
                 element: <GroupView />,
                 loader: groupsLoader,
-            }
+                children: [
+                        {
+                            path: '/group/:name/channel/:id',
+                            element: <GroupChannelView />,
+                            loader: channelsLoader,
+                        }
+                ]
+            },
+
         ]
     }
 ])

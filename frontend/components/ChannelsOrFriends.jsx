@@ -51,7 +51,7 @@ function ChannelsOrFriends() {
                         allChannels.map((group) => (
                             <>
                                 {Object.values(group.channels).flat().map((channel) => (
-                                    <PanelLink key={channel.id} to={`/group/${group.id}channel/${channel.id}`}>
+                                    <PanelLink key={channel.id} to={`/group/${group.name}/channel/${channel.id}`}>
                                         {channel.title}</PanelLink>
                                 ))}
                             </>
