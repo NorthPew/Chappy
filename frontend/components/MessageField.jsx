@@ -50,21 +50,30 @@ function MessageField() {
     function handleOnSubmit(event) {
         event.preventDefault()
 
-        let currentDate = new Date().toJSON().slice(0, 10);
-        let currentTime = new Date(new Date().getTime() + 1*60*60).toLocaleTimeString();
+        if(setMessageContent !== "") {
+            let currentDate = new Date().toJSON().slice(0, 10);
+            let currentTime = new Date(new Date().getTime() + 1*60*60).toLocaleTimeString();
 
-        let newMessage = {
-            content: messageContent,
-            time: currentTime,
-            date: currentDate,
-            sender: [{
-                "id": 8144,
-                "username": "Hajime"
-            }]
+            let newMessage = {
+                content: messageContent,
+                time: currentTime,
+                date: currentDate,
+                sender: [{
+                    "id": 8144,
+                    "username": "Hajime"
+                }]
+            }
+
+            sendMessage(selectSpecificView.route, selectSpecificView.channel, newMessage)
+
+            console.log(newMessage);
+        } else {
+            console.log('Skriv något innan du skickar!');
         }
-        sendMessage(selectSpecificView.route, selectSpecificView.channel, newMessage)
 
-        console.log(newMessage);
+
+
+
     }
 
 

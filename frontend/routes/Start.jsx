@@ -97,30 +97,35 @@ function LoginOrRegister() {
     async function onLogInSubmit(event) {
         event.preventDefault()
 
-        const loginStatus = await loginUser({username: userName, password: userPassword}) 
+        if (userName !== "" && userPassword !== "") {
+            const loginStatus = await loginUser({username: userName, password: userPassword}) 
 
-        console.log(loginStatus.loggedIn);
-
-        if (loginStatus.loggedIn == "Success" ) {
-
-            let jwt = loginStatus.token
-            sessionStorage.setItem(sessionStorageKey, 'Bearer: ' + jwt)
-
-            let check = authorize(sessionStorage.getItem(sessionStorageKey))
-
-            console.log(check);
-
-            if (check.tokenMessage = "Du är autentiserad") {
-
-                setIsLoggedIn(true)
-
-                return
+            console.log(loginStatus.loggedIn);
+    
+            if (loginStatus.loggedIn == "Success" ) {
+    
+                let jwt = loginStatus.token
+                sessionStorage.setItem(sessionStorageKey, 'Bearer: ' + jwt)
+    
+                let check = authorize(sessionStorage.getItem(sessionStorageKey))
+    
+                console.log(check);
+    
+                if (check.tokenMessage = "Du är autentiserad") {
+    
+                    setIsLoggedIn(true)
+    
+                    return
+                }
+    
+    
+            } else {
+                console.log('Gick inte att logga in!');
             }
-
-
         } else {
-            console.log('Gick inte att logga in!');
+            console.log('Dessa fält får inte lämnas tomt!');
         }
+
 
 
     }
