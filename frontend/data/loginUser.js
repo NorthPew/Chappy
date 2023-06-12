@@ -10,7 +10,7 @@ async function loginUser(oneUser) {
 	const response = await fetch(API_URL + 'user/' + 'login' , options)
 	const statusObject = await response.json()
 	console.log('Response from API: ', statusObject);
-    return {loggedIn: statusObject.status, token: statusObject.token}
+    return {loggedIn: statusObject.status, username: statusObject.username, id: statusObject.id, token: statusObject.token}
 }
 
 export default loginUser;

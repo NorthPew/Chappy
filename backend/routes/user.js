@@ -50,7 +50,9 @@ router.post("/login", async (req, res) => {
 
     console.log('Signerad JWT: ', token);
 
-    let tokenPackage = {token: token, status: "Success"}
+
+
+    let tokenPackage = {token: token, username: findUser.username, id: findUser.id, status: "Success"}
     res.send(tokenPackage)
 })
 

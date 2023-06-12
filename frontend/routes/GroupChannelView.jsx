@@ -35,9 +35,9 @@ const MessageText = styled.p`
 
 const MessageBoard = styled.ul`
     padding-left: 7.5px;
-    height: 90vh;
+    height: calc(100vh - 92px);
     overflow-y: scroll;
-    width: 84vw;
+    width: 86vw;
     float: left;
 `
 
@@ -45,9 +45,15 @@ const MessageListElem = styled.li`
     list-style-type: none;
 `
 
+const EditMessageBtn = styled.button`
+    padding: 20px;
+`
+
 export const loader = (groupName, groupChannel) => () => getMessages(groupName, groupChannel);
 
 function GroupChannelView() {
+    const {isLoggedIn, saveUserName} = useContext(UserContext);
+
     const { name, id } = useParams();
     const [messageData, setMessageData] = useState(null);
   
@@ -68,11 +74,21 @@ function GroupChannelView() {
         {messageData.map((message) => (
             <MessageListElem key={message.id}>
                 {message.sender.map((sender) => (
-                    <MessageSenderTimeBox>
-                        <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
-                        <MessageDate>{message.date}</MessageDate>
-                        <MessageTime>{message.time}</MessageTime>
-                    </MessageSenderTimeBox>
+                    isLoggedIn && saveUserName === sender.username ?
+                    <>
+                        <MessageSenderTimeBox>
+                            <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
+                            <MessageDate>{message.date}</MessageDate>
+                            <MessageTime>{message.time}</MessageTime>
+                            <EditMessageBtn>Ändra</EditMessageBtn>
+                        </MessageSenderTimeBox>
+                    </>
+                    : <MessageSenderTimeBox>
+                    <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
+                    <MessageDate>{message.date}</MessageDate>
+                    <MessageTime>{message.time}</MessageTime>
+                </MessageSenderTimeBox>
+
                 ))}
                 <MessageText>{message.content}</MessageText>
             </MessageListElem>

@@ -5,14 +5,14 @@ import { sendMessage } from "../data/sendMessage";
 import { useState } from "react";
 
 const MessageWrapper = styled.div`
-    width: 86vw;
-    height: 10vh;
+    width: 87vw;
+    height: 56px;
     display: grid;
     place-content: center;
     float: left;
     position: absolute;
     bottom: 0px;
-    margin-left: 11vw;
+    margin-left: 10vw;
     background-color: #36393E;
 `
 
@@ -27,7 +27,7 @@ const MessageInput = styled.input`
 
 
 function MessageField() {
-    const {isLoggedIn, selectSpecificView} = useContext(UserContext);
+    const {isLoggedIn, selectSpecificView, saveUserName, saveUserId} = useContext(UserContext);
 
     const [messageContent, setMessageContent] = useState("")
 
@@ -59,8 +59,8 @@ function MessageField() {
                 time: currentTime,
                 date: currentDate,
                 sender: [{
-                    "id": 8144,
-                    "username": "Hajime"
+                    "id": saveUserId,
+                    "username": saveUserName
                 }]
             }
 

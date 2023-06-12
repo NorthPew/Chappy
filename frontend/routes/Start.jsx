@@ -90,7 +90,7 @@ function LoginOrRegister() {
     const [userPassword, setUserPassword] = useState("");
 
     const [register, setRegister] = useState(false)
-    const {setIsLoggedIn, sessionStorageKey} = useContext(UserContext);
+    const {setIsLoggedIn, sessionStorageKey, localStorageUserKey, setSaveUserName} = useContext(UserContext);
 
 
 
@@ -107,13 +107,30 @@ function LoginOrRegister() {
                 let jwt = loginStatus.token
                 sessionStorage.setItem(sessionStorageKey, 'Bearer: ' + jwt)
     
-                let check = authorize(sessionStorage.getItem(sessionStorageKey))
+                let check = authorize(sessionStorage.getItem(localStorageUserKey))
     
                 console.log(check);
     
                 if (check.tokenMessage = "Du är autentiserad") {
     
                     setIsLoggedIn(true)
+
+                    if(!localStorage.getItem(localStorageUserKey)) {
+                        let userObject = {
+                            username: loginStatus.username,
+                            id: loginStatus.id
+                        }
+                        
+                        let userString = JSON.stringify(userObject)
+
+                        localStorage.setItem(localStorageUserKey, userString)
+                        
+                        return
+                    }
+
+                    localStora
+                        
+                    setSaveUserName(userName)
     
                     return
                 }

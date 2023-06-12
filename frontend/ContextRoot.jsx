@@ -5,6 +5,8 @@ export const UserContext = createContext()
 
 const sessionStorageKey = 'jwt-session'
 
+const localStorageUserKey = 'user-session'
+
 const ContextRoot = ({children}) => {
     
     // If logged in
@@ -17,13 +19,22 @@ const ContextRoot = ({children}) => {
 
                 setIsLoggedIn(true)
 
+                let userKey = JSON.parse(localStorage.getItem(localStorageUserKey))
+
+                setSaveUserName(userKey.username)
+                setSaveUserId(userKey.id)
+
                 return
             }
+        } else {
+            localStorage.removeItem(localStorageUserKey)
         }
     })
 
     // User Login
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [saveUserName, setSaveUserName] = useState("")
+    const [saveUserId, setSaveUserId] = useState("")
 
     // User on group page or friends page
     const [isOnGroup, setIsOnGroup] = useState(false)
@@ -36,7 +47,7 @@ const ContextRoot = ({children}) => {
     const [selectSpecificView, setSelectSpecificView] = useState({})
 
     return (
-        <UserContext.Provider value={{sessionStorageKey, whereToSendMessageToView, setWhereToSendMessageToView, selectSpecificView, setSelectSpecificView, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
+        <UserContext.Provider value={{sessionStorageKey, localStorageUserKey, whereToSendMessageToView, saveUserName, setSaveUserName, saveUserId, setSaveUserId, setWhereToSendMessageToView, selectSpecificView, setSelectSpecificView, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
             {children}
         </UserContext.Provider>
     )

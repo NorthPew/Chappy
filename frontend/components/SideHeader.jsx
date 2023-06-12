@@ -2,7 +2,6 @@ import { NavLink, useLoaderData } from "react-router-dom";
 import styled from "styled-components";
 import { UserContext } from "../ContextRoot"
 import { useContext } from "react";
-import AccountPanel from "./AccountPanel";
 import { getRoutes } from "../data/getRoutes";
 
 export const loader = () => getRoutes('groups')
@@ -73,9 +72,8 @@ const SideHeader = () => {
                         </NavLinkBtn>
                     ))
                 }
-
         </NavBody>
-        <AccountPanel />
+        
         </>
 
     )

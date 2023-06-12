@@ -2,11 +2,14 @@ import { useContext } from "react";
 import { UserContext } from "../ContextRoot";
 import styled from "styled-components";
 import { NavLink, useLoaderData } from "react-router-dom";
+
+
+import AccountPanel from "./AccountPanel";
 import { loader } from "./SideHeader";
 
 
 const Panel = styled.div`
-    width: 10vw;
+    width: calc(10vw - 20px);
     height: calc(100vh - 51px);
     float: left;
     display: flex;
@@ -79,6 +82,11 @@ function FriendsPanel () {
 function ChannelsPanel ({findGroup}) {
     const {isLoggedIn} = useContext(UserContext);
 
+    if(findGroup === undefined) {
+        return "test"
+        // TODO: Fix this issue
+    }
+
     const allChannels = useLoaderData()
     return (
         <>
@@ -117,12 +125,16 @@ function ChannelsPanel ({findGroup}) {
 function ChannelsOrFriends({findGroup}) {
     const {isOnGroup} = useContext(UserContext);
     return (
-        <Panel>
-            {
-                isOnGroup ? <ChannelsPanel findGroup={findGroup} />
-                : <FriendsPanel />
-            }
-        </Panel>
+        <>
+            <Panel>
+                {
+                    isOnGroup ? <ChannelsPanel findGroup={findGroup} />
+                    : <FriendsPanel />
+                }
+                
+            </Panel>
+            <AccountPanel />
+        </>
 
     )
 }
