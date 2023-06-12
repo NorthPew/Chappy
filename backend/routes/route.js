@@ -21,6 +21,8 @@ router.get('/:route', async (req, res) => {
         });
 
         res.send(users);
+    } else {
+        console.log('Den här routen finns ej, ' + route);
     }
 })
 

@@ -5,7 +5,7 @@ import { useContext } from "react";
 import AccountPanel from "./AccountPanel";
 import { getRoutes } from "../data/getRoutes";
 
-export const loader = () => getRoutes('group')
+export const loader = () => getRoutes('groups')
 
 const NavBody = styled.nav`
     display: flex;
