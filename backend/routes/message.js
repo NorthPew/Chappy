@@ -14,22 +14,22 @@ router.get('/:route/:channel', async (req, res) => {
 
     await db.read()
 
-    let combinedChat;
+    let combinedChatRoute;
 
     if (route !== 'DM') {
         if (!db.data.messages.groups.hasOwnProperty(route)) {
             res.status(404).send({message: `Group or channel not found. Got: ROUTE: ${route} and CHANNEL: ${channel}`})
         } else {
 
-            // combinedChat is route and channel combined
-            combinedChat = db.data.messages.groups[route].channels[channel]
+            // combinedChatRoute is route and channel combined
+            combinedChatRoute = db.data.messages.groups[route].channels[channel]
 
-            res.send(combinedChat) 
+            res.send(combinedChatRoute) 
         }
     } else {
-        combinedChat = db.data.messages.dms[route].channels[channel]
+        combinedChatRoute = db.data.messages.dms[route].channels[channel]
 
-        res.send(combinedChat)
+        res.send(combinedChatRoute)
     }
 })
 
@@ -62,7 +62,7 @@ router.post('/:route/:channel', async (req, res) => {
 
     await db.read()
 
-    let combinedChat;
+    let combinedChatRoute;
 
     // Checks if the message will be sent to group first or DM second
     if (route !== 'DM') {
@@ -75,21 +75,21 @@ router.post('/:route/:channel', async (req, res) => {
 
             await db.write()
 
-            combinedChat = db.data.messages.groups[route].channels[channel]
+            combinedChatRoute = db.data.messages.groups[route].channels[channel]
 
-            combinedChat.push(newMessage)
+            combinedChatRoute.push(newMessage)
     
             await db.write()
     
-            res.status(200).send(combinedChat)
+            res.status(200).send(combinedChatRoute)
         } else {
-            combinedChat = db.data.messages.groups[route].channels[channel]
+            combinedChatRoute = db.data.messages.groups[route].channels[channel]
 
-            combinedChat.push(newMessage)
+            combinedChatRoute.push(newMessage)
     
             await db.write()
     
-            res.status(200).send(combinedChat)
+            res.status(200).send(combinedChatRoute)
         }
     } else {
 
@@ -99,22 +99,71 @@ router.post('/:route/:channel', async (req, res) => {
 
             await db.write()
 
-            combinedChat = db.data.messages.dms[route].channels[channel]
+            combinedChatRoute = db.data.messages.dms[route].channels[channel]
 
-            combinedChat.push(newMessage)
+            combinedChatRoute.push(newMessage)
     
             await db.write()
 
-            res.status(200).send(combinedChat)
+            res.status(200).send(combinedChatRoute)
         } else {
-            combinedChat = db.data.messages.dms[route].channels[channel]
+            combinedChatRoute = db.data.messages.dms[route].channels[channel]
 
-            combinedChat.push(newMessage)
+            combinedChatRoute.push(newMessage)
     
             await db.write()
     
-            res.status(200).send(combinedChat)
+            res.status(200).send(combinedChatRoute)
         }
+    }
+})
+
+router.put('/:route/:channel/:id', async (req, res) => {
+    // Route will be a DM or group
+    // Channel will be specific chat in a group or DM for a chat with a user
+    
+    // Params
+    let route = req.params.route
+    let channel = req.params.channel
+    let id = req.params.id // Message ID
+
+    await db.read()
+
+    let combinedChatRoute;
+
+    // Checks if the message will be sent to group first or DM second
+    if (route !== 'DM') {
+        let editedChatMSG = req.body;
+
+        combinedChatRoute = db.data.messages.groups[route].channels[channel]
+
+        let oldChatMSG = combinedChatRoute.find(message => message.id === id)
+
+        oldChatMSG.content = editedChatMSG.content
+        oldChatMSG.time = editedChatMSG.time
+        oldChatMSG.date = editedChatMSG.date
+
+        combinedChatRoute[oldChatMSG] = editedChatMSG
+    
+        await db.write()
+    
+        res.status(200).send(editedChatMSG)
+    } else {
+        let editedChatMSG = req.body;
+
+        combinedChatRoute = db.data.messages.dms[route].channels[channel]
+
+        let oldChatMSG = combinedChatRoute.find(message => message.id === id)
+
+        oldChatMSG.content = editedChatMSG.content
+        oldChatMSG.time = editedChatMSG.time
+        oldChatMSG.date = editedChatMSG.date
+
+        combinedChatRoute[oldChatMSG] = editedChatMSG
+    
+        await db.write()
+    
+        res.status(200).send(editedChatMSG)
     }
 })
 
