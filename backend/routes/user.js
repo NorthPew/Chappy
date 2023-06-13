@@ -7,6 +7,18 @@ const router = express.Router()
 
 const db = getDb()
 
+function generateToken(getUserID) {
+    const hour = 60 * 60
+    const payload = {userId: getUserID}
+    const options = {expiresIn: 2 * hour}
+
+    let token = jwt.sign(payload, SECRET, options)
+
+    console.log('Signerad JWT: ', token);
+    
+    return token
+}
+
 // POST - login
 router.post("/login", async (req, res) => {
 
@@ -41,18 +53,9 @@ router.post("/login", async (req, res) => {
     }
 
     // Successful login! Create a JWT token and send it back
+    
 
-    const hour = 60 * 60
-    const payload = {userId: findUser.id}
-    const options = {expiresIn: 2 * hour}
-
-    let token = jwt.sign(payload, SECRET, options)
-
-    console.log('Signerad JWT: ', token);
-
-
-
-    let tokenPackage = {token: token, username: findUser.username, id: findUser.id, status: "Success"}
+    let tokenPackage = {token: generateToken(findUser.id), username: findUser.username, id: findUser.id, status: "Success"}
     res.send(tokenPackage)
 })
 
@@ -88,10 +91,12 @@ router.post('/signup', async (req, res) => {
     db.data.users.push(createUser)
 
     // Adding user to startpage
-    db.data.route.users.push(addUserRoute)
+    db.data.routes.users.push(addUserRoute)
 
     await db.write()
-    res.status(200).send(createUser)
+
+    let registerPackage = {token: generateToken(createUser.id), username: createUser.username, id: createUser.id, status: "Success"}
+    res.send(registerPackage)
 })
 
 

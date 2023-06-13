@@ -13,6 +13,7 @@ export const loader = () => getRoutes("users")
 
 // Login or Register
 import ice from "../images/background.jpg"
+import registerUser from "../data/registerUser";
 
 const BackgroundBox = styled.div`
     background-image: url('${ice}');
@@ -78,7 +79,7 @@ function UserStart() {
             <ChannelsOrFriends />
             {
                 usersData.map((user) => (
-                    <p>{user.username}</p>
+                    <p key={user.id}>{user.username}</p>
                 ))
             }
         </Wrapper>
@@ -127,8 +128,6 @@ function LoginOrRegister() {
                         
                         return
                     }
-
-                    localStora
                         
                     setSaveUserName(userName)
     
@@ -147,8 +146,52 @@ function LoginOrRegister() {
 
     }
 
-    function onRegisterSubmit(event) {
+    async function onRegisterSubmit(event) {
         event.preventDefault()
+
+        if (userName !== "" && userPassword !== "") {
+            const registerStatus = await registerUser({username: userName, password: userPassword}) 
+
+            console.log(registerStatus.registered);
+    
+            if (registerStatus.registered == "Success" ) {
+    
+                let jwt = registerStatus.token
+                sessionStorage.setItem(sessionStorageKey, 'Bearer: ' + jwt)
+    
+                let check = authorize(sessionStorage.getItem(localStorageUserKey))
+    
+                console.log(check);
+    
+                if (check.tokenMessage = "Du är autentiserad") {
+    
+                    setIsLoggedIn(true)
+
+                    if(!localStorage.getItem(localStorageUserKey)) {
+                        let userObject = {
+                            username: registerStatus.username,
+                            id: registerStatus.id
+                        }
+                        
+                        let userString = JSON.stringify(userObject)
+
+                        localStorage.setItem(localStorageUserKey, userString)
+                        
+                        return
+                    }
+                        
+                    setSaveUserName(userName)
+    
+                    return
+                }
+    
+    
+            } else {
+                console.log('Gick inte att logga in!');
+            }
+        } else {
+            console.log('Dessa fält får inte lämnas tomt!');
+        }
     }
 
     const handleUserNameChange = (e) => {
@@ -191,7 +234,9 @@ function LoginOrRegister() {
 }
 
 function Start() {
-    const {isLoggedIn} = useContext(UserContext);
+    const {isLoggedIn, setIsOnGroup} = useContext(UserContext);
+
+    setIsOnGroup(false)
     return (
         <>
             {isLoggedIn ? <UserStart /> : <LoginOrRegister />}

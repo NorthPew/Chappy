@@ -82,11 +82,6 @@ function FriendsPanel () {
 function ChannelsPanel ({findGroup}) {
     const {isLoggedIn} = useContext(UserContext);
 
-    if(findGroup === undefined) {
-        return "test"
-        // TODO: Fix this issue
-    }
-
     const allChannels = useLoaderData()
     return (
         <>

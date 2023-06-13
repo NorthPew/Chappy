@@ -39,15 +39,11 @@ const ContextRoot = ({children}) => {
     // User on group page or friends page
     const [isOnGroup, setIsOnGroup] = useState(false)
 
-
-    // If on a group and on a specific channel, display a different text on message field
-    const [whereToSendMessageToView, setWhereToSendMessageToView] = useState("")
-
     // To capture where user is at, route: group (Chappy) or DM, channel: group channel or specific user chat
     const [selectSpecificView, setSelectSpecificView] = useState({})
 
     return (
-        <UserContext.Provider value={{sessionStorageKey, localStorageUserKey, whereToSendMessageToView, saveUserName, setSaveUserName, saveUserId, setSaveUserId, setWhereToSendMessageToView, selectSpecificView, setSelectSpecificView, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
+        <UserContext.Provider value={{sessionStorageKey, localStorageUserKey, saveUserName, setSaveUserName, saveUserId, setSaveUserId, selectSpecificView, setSelectSpecificView, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
             {children}
         </UserContext.Provider>
     )
