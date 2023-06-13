@@ -1,6 +1,8 @@
 import { UserContext } from "../ContextRoot"
 import { useContext } from "react";
 import styled from "styled-components";
+import deleteUser from "../data/deleteUser";
+
 
 const Panel = styled.div`
     width: calc(10vw - 15px);
@@ -41,19 +43,26 @@ function AccountPanel() {
     function onClickSignOut() {
         localStorage.removeItem(localStorageUserKey)
         sessionStorage.removeItem(sessionStorageKey)
-        setIsLoggedIn(false)
+
         setSaveUserId("")
         setSaveUserName("")
+
+        setIsLoggedIn(false)
+
         console.log('Du är utloggad!');
     }
 
     function onClickDeleteAccount() {
-        // TODO: Do backend for deleting accounts and make a delete request at frontend with script
         localStorage.removeItem(localStorageUserKey)
         sessionStorage.removeItem(sessionStorageKey)
-        setIsLoggedIn(false)
+
+        deleteUser(saveUserId)
+
         setSaveUserId("")
         setSaveUserName("")
+
+        setIsLoggedIn(false)
+
         console.log('Kontot borttaget!');
     }
 
