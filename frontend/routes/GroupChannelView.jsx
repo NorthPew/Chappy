@@ -52,10 +52,20 @@ const EditMessageBtn = styled.button`
 export const loader = (groupName, groupChannel) => () => getMessages(groupName, groupChannel);
 
 function GroupChannelView() {
-    const {isLoggedIn, saveUserName} = useContext(UserContext);
+
+
+    const {isLoggedIn, setSelectSpecificView, saveUserName} = useContext(UserContext);
 
     const { name, id } = useParams();
     const [messageData, setMessageData] = useState(null);
+
+    useEffect(() => {
+        setSelectSpecificView({
+            route: name,
+            channel: id
+        })
+    }, [])
+
   
     useEffect(() => {
       const fetchData = async () => {

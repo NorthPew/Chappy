@@ -31,17 +31,6 @@ function MessageField() {
 
     const [messageContent, setMessageContent] = useState("")
 
-
-    // Specific view
-    let onSpecificView;
-
-    if (selectSpecificView.route === 'chappy' && selectSpecificView.channel === 'one') {
-        onSpecificView = 'Public Chat'
-    } else if (selectSpecificView.route === 'chappy' && selectSpecificView.channel === 'two') {
-        onSpecificView = 'Private Chat'
-    }
-
-
     function handleOnChangeMessageField(e) {
         setMessageContent(e.target.value)
     }
@@ -81,7 +70,7 @@ function MessageField() {
     <form onSubmit={handleOnSubmit}>
         <MessageWrapper>
             { isLoggedIn ?
-                <MessageInput type="text" placeholder={`Send a message to ${onSpecificView}`} onChange={handleOnChangeMessageField} value={messageContent} ></MessageInput>
+                <MessageInput type="text" placeholder={`Send a message to channel ${selectSpecificView.channel}`} onChange={handleOnChangeMessageField} value={messageContent} ></MessageInput>
                 : <MessageInput type="text" disabled placeholder="You need to be logged in to send messages"></MessageInput>
             }
         </MessageWrapper>
