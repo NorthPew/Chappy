@@ -62,76 +62,40 @@ router.post('/:route/:channel', async (req, res) => {
 
     await db.read()
 
-    let combinedChatRoute;
+    // Checks if the message will be sent to group first or DM second
+    let combinedChat;
 
     // Checks if the message will be sent to group first or DM second
     if (route !== 'DM') {
-        
-        try {
-            // Group or Channel doesn't already exist, make a group and channel route and then send the message
-            if (!db.data.messages.groups[route] || !db.data.messages.groups[route].channels[channel]) {
 
-                if (!db.data.messages.groups) {
-                    return db.data.messages.groups = { channels: {} };
-                }
+        if(!db.data.messages.groups[route]) {
+            db.data.messages.groups[route] = {"channels": {[channel]: []} };
+            await db.write();
 
-                let createNewGroup = db.data.messages.groups
-                createNewGroup[route] = [];
-                
-                if (!db.data.messages.groups[route].channels) {
-                   return db.data.messages.groups[route].channels = {};
-                }
+            db.data.messages.groups[route].channels[channel].push(newMessage);
 
-                let createNewChannel = db.data.messages.groups[route].channels;
-                createNewChannel[channel] = [];
+            await db.write();
 
-                await db.write()
+            res.send(newMessage);
 
-                combinedChatRoute = db.data.messages.groups[route].channels[channel]
-        
-                combinedChatRoute.push(newMessage)
-        
-                await db.write()
-        
-                res.status(200).send(combinedChatRoute)
+          } else if (!db.data.messages.groups[route].channels[channel]) {
+            db.data.messages.groups[route].channels[channel] = [];
 
-            } else {
-                combinedChatRoute = db.data.messages.groups[route].channels[channel]
+            await db.write();
+            
+            db.data.messages.groups[route].channels[channel].push(newMessage);
 
-                combinedChatRoute.push(newMessage)
-        
-                await db.write()
-        
-                res.status(200).send(combinedChatRoute)
-            }
-        } catch (error) {
-            console.log('Route: ', route, "Channel: ", channel, "Error: ", error);
-        }
-    } else {
+            await db.write();
 
-        if(!db.data.messages.dms[route].channels[channel]) {
-            let createNewUserChannel = db.data.messages.dms[route].channels;
-            createNewUserChannel[channel] = [];
+            res.send(newMessage);
+          } else {
+            db.data.messages.groups[route].channels[channel].push(newMessage);
 
-            await db.write()
+            await db.write();
 
-            combinedChatRoute = db.data.messages.dms[route].channels[channel]
-
-            combinedChatRoute.push(newMessage)
-    
-            await db.write()
-
-            res.status(200).send(combinedChatRoute)
-        } else {
-            combinedChatRoute = db.data.messages.dms[route].channels[channel]
-
-            combinedChatRoute.push(newMessage)
-    
-            await db.write()
-    
-            res.status(200).send(combinedChatRoute)
-        }
-    }
+            res.send(newMessage);
+          }
+}
 })
 
 router.put('/:route/:channel/:id', async (req, res) => {

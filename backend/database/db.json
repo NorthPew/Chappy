@@ -6,41 +6,63 @@
       "password": "123"
     }
   ],
-  "routes": {
-    "groups": [
-      {
-        "id": 1,
-        "name": "chappy",
-        "title": "Chappy | Lättåtkomliga gruppchatten",
-        "icon": "public",
+  "messages": {
+    "groups": {
+      "chappy": {
         "channels": {
           "one": [
             {
               "id": 1,
-              "title": "# Public Chat",
-              "public": true
+              "content": "Hello this is a test message!",
+              "time": "14:28",
+              "date": "2023-06-09",
+              "sender": [
+                {
+                  "id": 8144,
+                  "username": "Hajime"
+                }
+              ]
+            },
+            {
+              "id": 699549,
+              "content": "This was sent using Insomnia!",
+              "time": "14:00",
+              "date": "2023-06-10",
+              "sender": [
+                {
+                  "id": 8144,
+                  "username": "Hajime"
+                }
+              ]
+            },
+            {
+              "id": 492934,
+              "content": "Test",
+              "time": "19:41:50",
+              "date": "2023-06-10",
+              "sender": [
+                {
+                  "id": 8144,
+                  "username": "Hajime"
+                }
+              ]
+            },
+            {
+              "id": 703358,
+              "content": "Insomnia is nice!",
+              "time": "19:47",
+              "date": "2023-06-10",
+              "sender": [
+                {
+                  "id": 8144,
+                  "username": "Hajime"
+                }
+              ]
             }
           ],
-          "two": [
-            {
-              "id": 2,
-              "title": "# Private Chat",
-              "public": false
-            }
-          ]
+          "two": []
         }
       }
-    ],
-    "users": [
-      {
-        "id": 8144,
-        "username": "Hajime"
-      }
-    ]
-  },
-  "messages": {
-    "groups": {
-      "chappy": []
     },
     "dms": {}
   }
