@@ -91,7 +91,7 @@ function LoginOrRegister() {
     const [userPassword, setUserPassword] = useState("");
 
     const [register, setRegister] = useState(false)
-    const {setIsLoggedIn, sessionStorageKey, localStorageUserKey, setSaveUserName} = useContext(UserContext);
+    const {setIsLoggedIn, sessionStorageKey, localStorageUserKey, setSaveUserName, setSaveUserId} = useContext(UserContext);
 
 
 
@@ -130,6 +130,7 @@ function LoginOrRegister() {
                     }
                         
                     setSaveUserName(userName)
+                    setSaveUserId(loginStatus.id)
     
                     return
                 }
@@ -181,11 +182,10 @@ function LoginOrRegister() {
                     }
                         
                     setSaveUserName(userName)
+                    setSaveUserId(registerStatus.id)
     
                     return
                 }
-    
-    
             } else {
                 console.log('Gick inte att logga in!');
             }
