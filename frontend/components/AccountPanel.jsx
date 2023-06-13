@@ -36,23 +36,49 @@ const ButtonBox = styled.div`
 `
 
 function AccountPanel() {
-    const {saveUserName, saveUserId} = useContext(UserContext);
+    const {saveUserName, saveUserId, localStorageUserKey, sessionStorageKey, setIsLoggedIn, setSaveUserId, setSaveUserName, isLoggedIn} = useContext(UserContext);
+
+    function onClickSignOut() {
+        localStorage.removeItem(localStorageUserKey)
+        sessionStorage.removeItem(sessionStorageKey)
+        setIsLoggedIn(false)
+        setSaveUserId("")
+        setSaveUserName("")
+        console.log('Du är utloggad!');
+    }
+
+    function onClickDeleteAccount() {
+        // TODO: Do backend for deleting accounts and make a delete request at frontend with script
+        localStorage.removeItem(localStorageUserKey)
+        sessionStorage.removeItem(sessionStorageKey)
+        setIsLoggedIn(false)
+        setSaveUserId("")
+        setSaveUserName("")
+        console.log('Kontot borttaget!');
+    }
+
     return (
         <>
             <Panel>
-                <UserName title={`#${saveUserId}`}>{saveUserName}</UserName>
-                <ButtonBox>
-                    <PanelButton title="Log out">
-                        <span className="material-symbols-outlined">
-                            logout
-                        </span>
-                    </PanelButton>
-                    <PanelButton title="Delete account">
-                        <span className="material-symbols-outlined">
-                            delete
-                        </span>
-                    </PanelButton>
+                {
+                    isLoggedIn ? 
+                    <>
+                        <UserName title={`#${saveUserId}`}>{saveUserName}</UserName>
+                    <ButtonBox>
+                        <PanelButton title="Log out" onClick={() => onClickSignOut()}>
+                            <span className="material-symbols-outlined">
+                                logout
+                            </span>
+                        </PanelButton>
+                        <PanelButton title="Delete account" onClick={() => onClickDeleteAccount()}>
+                            <span className="material-symbols-outlined">
+                                 delete
+                            </span>
+                        </PanelButton>
                     </ButtonBox>
+                    </> : 
+                    <UserName>Read mode</UserName>
+                }
             </Panel>
         </>
     )
