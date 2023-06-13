@@ -61,7 +61,7 @@ router.post("/login", async (req, res) => {
 
 
 // POST - Sign up
-router.post('/signup', async (req, res) => {
+router.post('/', async (req, res) => {
     await db.read()
     
     let userName = req.body.username
@@ -97,6 +97,28 @@ router.post('/signup', async (req, res) => {
 
     let registerPackage = {token: generateToken(createUser.id), username: createUser.username, id: createUser.id, status: "Success"}
     res.send(registerPackage)
+})
+
+router.delete('/:id', async (req, res) => {
+    let id = Number(req.params.id)
+
+    await db.read()
+
+    const users = db.data.users
+
+    let userToDelete = users.find((user => user.id === id))
+
+    if (!userToDelete) {
+        return res.status(400).send({ message: 'Kunde inte hitta användaren!'})
+    } else {
+        db.data.users = users.filter((user) => user.id !== id)
+
+        db.data.routes.users = db.data.routes.users.filter((user => user.id !== id))
+
+        await db.write()
+
+        return res.sendStatus(200)
+    }
 })
 
 
