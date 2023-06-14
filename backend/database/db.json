@@ -17,36 +17,28 @@
       "name": "chappy",
       "title": "Chappy | Easily accessible group chat",
       "icon": "public",
-      "channels": {
-        "1": [
-          {
-            "id": 1,
-            "title": "# Random Channel",
-            "public": true
-          }
-        ],
-        "2": [
-          {
-            "id": 2,
-            "title": "# Private Channel",
-            "public": false
-          }
-        ],
-        "3": [
-          {
-            "id": 3,
-            "title": "# Code Channel",
-            "public": true
-          }
-        ],
-        "4": [
-          {
-            "id": 4,
-            "title": "# Group 1 Channel",
-            "public": false
-          }
-        ]
-      }
+      "channels": [
+        {
+          "id": 1,
+          "title": "# Random Channel",
+          "public": true
+        },
+        {
+          "id": 2,
+          "title": "# Private Channel",
+          "public": false
+        },
+        {
+          "id": 3,
+          "title": "# Code Channel",
+          "public": true
+        },
+        {
+          "id": 4,
+          "title": "# Group 1 Channel",
+          "public": false
+        }
+      ]
     }
   ],
   "messages": {
@@ -56,15 +48,16 @@
           "1": [
             {
               "id": 1,
-              "content": "Hello this is an edited message with Insomnia",
-              "time": "18:00",
+              "content": "Hello, this message was edited with Insomnia and now using frontend!",
+              "time": "22:37:24",
               "date": "2023-06-14",
               "sender": [
                 {
                   "id": 8144,
                   "username": "Hajime"
                 }
-              ]
+              ],
+              "edited": true
             },
             {
               "id": 492934,

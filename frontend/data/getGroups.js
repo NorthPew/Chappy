@@ -1,6 +1,6 @@
 import { API_URL } from "./constants";
 
-async function getGroups(route) {
+async function getGroups() {
     console.log('Getting groups...');
     const options = {
         method: 'GET',
