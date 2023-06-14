@@ -10,7 +10,7 @@ async function registerUser(oneUser) {
 	const response = await fetch(API_URL + 'user/', options)
 	const statusObject = await response.json()
 	console.log('Response from API: ', statusObject);
-    return {registered: statusObject.status,  username: statusObject.username, id: statusObject.id}
+    return {registered: statusObject.status,  username: statusObject.username, id: statusObject.id, token: statusObject.token}
 }
 
 export default registerUser;

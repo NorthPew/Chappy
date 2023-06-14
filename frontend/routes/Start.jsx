@@ -108,7 +108,7 @@ function LoginOrRegister() {
                 let jwt = loginStatus.token
                 sessionStorage.setItem(sessionStorageKey, 'Bearer: ' + jwt)
     
-                let check = authorize(sessionStorage.getItem(localStorageUserKey))
+                let check = await authorize(sessionStorage.getItem(localStorageUserKey))
     
                 console.log(check);
     
@@ -160,7 +160,7 @@ function LoginOrRegister() {
                 let jwt = registerStatus.token
                 sessionStorage.setItem(sessionStorageKey, 'Bearer: ' + jwt)
     
-                let check = authorize(sessionStorage.getItem(localStorageUserKey))
+                let check = await authorize(sessionStorage.getItem(localStorageUserKey))
     
                 console.log(check);
     

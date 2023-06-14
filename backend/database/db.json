@@ -11,9 +11,19 @@
       "password": "123"
     },
     {
-      "id": 6175,
-      "username": "Eva",
-      "password": "333"
+      "id": 8979,
+      "username": "Evert",
+      "password": "123"
+    },
+    {
+      "id": 3582,
+      "username": "ErikSaade",
+      "password": "111"
+    },
+    {
+      "id": 678,
+      "username": "ErikSaade",
+      "password": "123"
     }
   ],
   "routes": {
@@ -37,6 +47,13 @@
               "title": "# Private Chat",
               "public": false
             }
+          ],
+          "3": [
+            {
+              "id": 2,
+              "title": "# Koda Chat",
+              "public": true
+            }
           ]
         }
       }
@@ -47,12 +64,16 @@
         "username": "Hajime"
       },
       {
-        "id": 2694,
-        "userName": "VVV"
+        "id": 8979,
+        "username": "Evert"
       },
       {
-        "id": 6175,
-        "userName": "Evert"
+        "id": 3582,
+        "username": "ErikSaade"
+      },
+      {
+        "id": 678,
+        "username": "ErikSaade"
       }
     ]
   },
@@ -168,9 +189,46 @@
                   "username": "VVV"
                 }
               ]
+            },
+            {
+              "id": 877023,
+              "content": "Det är bra",
+              "time": "11:22:14",
+              "date": "2023-06-14",
+              "sender": [
+                {
+                  "id": 5352,
+                  "username": "111"
+                }
+              ]
+            },
+            {
+              "id": 282727,
+              "content": "Ettt",
+              "time": "11:52:18",
+              "date": "2023-06-14",
+              "sender": [
+                {
+                  "id": 6540,
+                  "username": "123"
+                }
+              ]
             }
           ],
-          "2": [],
+          "2": [
+            {
+              "id": 144566,
+              "content": "Erik Saade är bäst",
+              "time": "11:19:39",
+              "date": "2023-06-14",
+              "sender": [
+                {
+                  "id": 3582,
+                  "username": "ErikSaade"
+                }
+              ]
+            }
+          ],
           "3": [
             {
               "id": 695205,
@@ -181,6 +239,18 @@
                 {
                   "id": 8144,
                   "username": "Hajime"
+                }
+              ]
+            },
+            {
+              "id": 91781,
+              "content": "Elak!",
+              "time": "13:37",
+              "date": "2023-06-14",
+              "sender": [
+                {
+                  "id": 4342,
+                  "username": "Elak"
                 }
               ]
             }

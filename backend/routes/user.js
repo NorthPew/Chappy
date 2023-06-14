@@ -79,7 +79,7 @@ router.post('/', async (req, res) => {
 
     let addUserRoute = {
         id: createUser.id,
-        userName: createUser.username
+        username: createUser.username
     }
 
     if (!req.body || !userName || !userPassword) {
@@ -142,7 +142,14 @@ router.put('/:id', async (req, res) => {
         userToEdit.username = editedUser.username
         userToEdit.password = editedUser.password
 
+        let editUserRoute = {
+            id: userToEdit.id,
+            username: editedUser.username
+        }
+
         db.data.users[userToEdit] = editedUser;
+
+        let userRouteToEdit = db.data.routes.users.find((user) => user.id === id)
 
         await db.write()
 
@@ -183,6 +190,7 @@ router.get('/authorization', async (req, res) => {
         res.status(202).send({ message: 'Du är autentiserad'})
     } catch (error) {
         console.log('GET /authorization felmeddelande: ', error.message)
+        console.log(`Token: '${token}', Secret: ${SECRET}`);
         res.status(401).send({message: 'Du blev inte autentiserad!'})
     }
 })

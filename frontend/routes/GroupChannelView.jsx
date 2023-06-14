@@ -74,6 +74,11 @@ function GroupChannelView() {
       };
       fetchData();
     }, [name, id]);
+
+    async function refreshMsgs() {
+        const data = await loader(name, id)();
+        setMessageData(data);
+    }
   
     if (!messageData) {
       return <div>Loading...</div>;
