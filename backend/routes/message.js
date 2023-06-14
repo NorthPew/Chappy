@@ -139,6 +139,7 @@ router.put('/:route/:channel/:id', async (req, res) => {
         oldChatMSG.content = editedChatMSG.content
         oldChatMSG.time = editedChatMSG.time
         oldChatMSG.date = editedChatMSG.date
+        oldChatMSG.edited = editedChatMSG.edited
 
         combinedChatRoute[oldChatMSG] = editedChatMSG
 
