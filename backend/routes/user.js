@@ -146,7 +146,7 @@ router.put('/:id', async (req, res) => {
 
         await db.write()
 
-        res.status(200).send()
+        res.status(200).send({status: "Success", username: editedUser.username})
     }
 
     
