@@ -47,6 +47,7 @@ router.post('/:route/:channel', async (req, res) => {
     let time = req.body.time;
     let date = req.body.date;
     let sender = req.body.sender; // Will be an object with user and user id
+    let edited = false
 
     function generateId() {
         return Math.floor(Math.random() * 1000000 - 1);
@@ -55,9 +56,10 @@ router.post('/:route/:channel', async (req, res) => {
     let newMessage = {
         id: generateId(),
         content,
+        edited,
         time,
         date,
-        sender
+        sender,
     }
 
     await db.read()
@@ -120,6 +122,7 @@ router.put('/:route/:channel/:id', async (req, res) => {
         oldChatMSG.content = editedChatMSG.content
         oldChatMSG.time = editedChatMSG.time
         oldChatMSG.date = editedChatMSG.date
+        oldChatMSG.edited = editedChatMSG.edited
 
         combinedChatRoute[oldChatMSG] = editedChatMSG
     

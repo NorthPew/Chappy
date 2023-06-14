@@ -1,9 +1,11 @@
+// React & styled
 import { useLoaderData, useParams } from "react-router-dom"
-import { getMessages } from "../data/getMessages"
 import styled from "styled-components";
 import { useContext, useState, useEffect } from "react";
-import { UserContext } from "../ContextRoot";
 
+import { UserContext } from "../ContextRoot";
+import { editMessage } from "../data/editMessage";
+import { getMessages } from "../data/getMessages"
 const MessageSender = styled.p`
     font-size: 18px;
     font-weight: 600;
@@ -33,6 +35,12 @@ const MessageText = styled.p`
     font-size: 16px;
 `
 
+const MessageEdited = styled.p`
+    font-size: 12px;
+    font-weight: thin;
+    margin: 0px;
+`
+
 const MessageBoard = styled.ul`
     padding-left: 7.5px;
     height: calc(100vh - 92px);
@@ -45,19 +53,43 @@ const MessageListElem = styled.li`
     list-style-type: none;
 `
 
-const EditMessageBtn = styled.button`
-    padding: 20px;
+const MessageBtn = styled.button`
+    padding: 5px;
+    border: none;
+    border-radius: 6.5px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #f1f1f1;
+
+    &:hover {
+        background-color: #424549;
+    }
+`
+
+const MessageEditInputField = styled.input`
+    border-radius: 7.5px;
+    background-color: #424549;
+    width: 80vw;
+    border: none;
+    padding: .85em .75em;
+    outline: none;
 `
 
 export const loader = (groupName, groupChannel) => () => getMessages(groupName, groupChannel);
 
 function GroupChannelView() {
 
-    const {isLoggedIn, setSelectSpecificView, saveUserName, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData} = useContext(UserContext);
+    const [editingMessage, setEditingMessage] = useState({});
+    const [editMessageInput, setEditMessageInput] = useState("");
 
+
+    // Context
+    const {isLoggedIn, setSelectSpecificView, saveUserName, saveUserId, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData} = useContext(UserContext);
+
+    // Params
     const { name, id } = useParams();
 
-
+    // To tell messageField where to send a message
     setSaveGroupName(name)
     setSaveChannelId(id)
 
@@ -80,28 +112,92 @@ function GroupChannelView() {
       return <div>Loading...</div>;
     }
 
+    function onEditMessage(message) {
+        setEditingMessage(message)
+    }
+
+    async function onSubmitEditedMessage(e) {
+        e.preventDefault();
+
+        if (editMessageInput !== "") {
+            let currentDate = new Date().toJSON().slice(0, 10);
+            let currentTime = new Date(new Date().getTime() + 1*60*60).toLocaleTimeString();
+    
+            let editedMessage = {
+                content: editMessageInput,
+                time: currentTime,
+                date: currentDate,
+                edited: true,
+                sender: [{
+                    "id": saveUserId,
+                    "username": saveUserName
+                }]
+            }
+    
+            const result = await editMessage(saveGroupName, saveChannelId, editingMessage.id, editedMessage)
+    
+            console.log(result);
+    
+            setEditingMessage({})
+        }
+
+    }
+
+    function onChangeEditMessage(e) {
+        setEditMessageInput(e.target.value)
+    }
+
     return (
         <MessageBoard>
         {messageData.map((message) => (
             <MessageListElem key={message.id}>
-                {message.sender.map((sender) => (
+                {
+                    editingMessage.id === message.id ?
+                    (
+                        <form onSubmit={onSubmitEditedMessage}>
+                            <MessageEditInputField type="text" value={editMessageInput} onChange={onChangeEditMessage} placeholder={message.content}></MessageEditInputField>
+                        </form>
+                    )
+                    : message.sender.map((sender) => (
                     isLoggedIn && saveUserName === sender.username ?
                     <>
                         <MessageSenderTimeBox>
                             <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
                             <MessageDate>{message.date}</MessageDate>
                             <MessageTime>{message.time}</MessageTime>
-                            <EditMessageBtn>Ändra</EditMessageBtn>
+                                    {
+                            message.edited && 
+                                <MessageEdited>
+                                    (Edited)
+                                </MessageEdited>
+                            }
+                            <MessageBtn title="Ändra på meddelandet" onClick={() => onEditMessage(message)}>
+                                <span className="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </MessageBtn>
+                            <MessageBtn title="Radera meddelandet">
+                                <span className="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </MessageBtn>
                         </MessageSenderTimeBox>
                     </>
                     : <MessageSenderTimeBox>
                     <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
                     <MessageDate>{message.date}</MessageDate>
                     <MessageTime>{message.time}</MessageTime>
+                    {
+                    message.edited && 
+                        <MessageEdited>
+                            (Edited)
+                        </MessageEdited>
+                    }
                 </MessageSenderTimeBox>
 
                 ))}
-                <MessageText>{message.content}</MessageText>
+                <MessageText>{message.content}
+                </MessageText>
             </MessageListElem>
         ))}
     </MessageBoard>

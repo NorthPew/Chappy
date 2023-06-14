@@ -60,11 +60,11 @@ const DisabledPanelLink = styled.p`
     font-weight: 600;
 `
 
-const GroupTitleBox = styled.div`
+const PanelTitleBox = styled.div`
     border-bottom: 2.5px solid #1e2124;
 `
 
-const GroupTitle = styled.h1`
+const PanelTitle = styled.h1`
     font-size: 22px;
     font-weight: 600;
 `
@@ -73,7 +73,7 @@ function FriendsPanel () {
     const usersData = useLoaderData()
     return (
         <>
-            <p>DMs</p>
+            <PanelTitleBox><PanelTitle>DMs</PanelTitle></PanelTitleBox>
             {
                 usersData.map((user) => (
                     <p key={user.id}>{user.username}</p>
@@ -89,7 +89,7 @@ function ChannelsPanel ({findGroup}) {
     const allChannels = useLoaderData()
     return (
         <>
-        <GroupTitleBox><GroupTitle>{findGroup.title}</GroupTitle></GroupTitleBox>
+        <PanelTitleBox><PanelTitle>{findGroup.title}</PanelTitle></PanelTitleBox>
             {
                 !isLoggedIn ?
                 allChannels.map((group) => (
