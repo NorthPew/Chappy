@@ -27,7 +27,7 @@ const MessageInput = styled.input`
 
 
 function MessageField() {
-    const {isLoggedIn, selectSpecificView, saveUserName, saveUserId} = useContext(UserContext);
+    const {isLoggedIn, selectSpecificView, saveUserName, saveUserId, refreshMsgs} = useContext(UserContext);
 
     const [messageContent, setMessageContent] = useState("")
 
@@ -39,7 +39,7 @@ function MessageField() {
     function handleOnSubmit(event) {
         event.preventDefault()
 
-        if(setMessageContent !== "") {
+        if(messageContent !== "") {
             let currentDate = new Date().toJSON().slice(0, 10);
             let currentTime = new Date(new Date().getTime() + 1*60*60).toLocaleTimeString();
 
@@ -55,13 +55,13 @@ function MessageField() {
 
             sendMessage(selectSpecificView.route, selectSpecificView.channel, newMessage)
 
+            setMessageContent("")
+            refreshMsgs()
+
             console.log(newMessage);
         } else {
             console.log('Skriv något innan du skickar!');
         }
-
-
-
 
     }
 

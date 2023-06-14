@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import authorize from "./data/authorize";
-
+import { getMessages } from "./data/getMessages";
 export const UserContext = createContext()
 
 const sessionStorageKey = 'jwt-session'
@@ -31,19 +31,36 @@ const ContextRoot = ({children}) => {
         }
     })
 
+
+    // To refresh message board when sending a message and so on
+    async function refreshMsgs() {
+        const loader = (saveGroupName, saveChannelId) => () => getMessages(saveGroupName, saveChannelId);
+
+        const data = await loader(saveGroupName, saveChannelId)();
+        setMessageData(data);
+    }
+
     // User Login
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [saveUserName, setSaveUserName] = useState("")
     const [saveUserId, setSaveUserId] = useState("")
 
-    // User on group page or friends page
+
+    // Group/DM and Channel/User ID
+    const [saveGroupName, setSaveGroupName] = useState("")
+    const [saveChannelId, setSaveChannelId] = useState("")
+
+    // Messages
+    const [messageData, setMessageData] = useState(null);
+
+    // User on group page or start page
     const [isOnGroup, setIsOnGroup] = useState(false)
 
     // To capture where user is at, route: group (Chappy) or DM, channel: group channel or specific user chat
     const [selectSpecificView, setSelectSpecificView] = useState({})
 
     return (
-        <UserContext.Provider value={{sessionStorageKey, localStorageUserKey, saveUserName, setSaveUserName, saveUserId, setSaveUserId, selectSpecificView, setSelectSpecificView, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup}}>
+        <UserContext.Provider value={{sessionStorageKey, localStorageUserKey, saveUserName, setSaveUserName, saveUserId, setSaveUserId, selectSpecificView, setSelectSpecificView, isLoggedIn, setIsLoggedIn, isOnGroup, setIsOnGroup, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData, refreshMsgs}}>
             {children}
         </UserContext.Provider>
     )

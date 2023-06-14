@@ -53,11 +53,13 @@ export const loader = (groupName, groupChannel) => () => getMessages(groupName, 
 
 function GroupChannelView() {
 
-
-    const {isLoggedIn, setSelectSpecificView, saveUserName} = useContext(UserContext);
+    const {isLoggedIn, setSelectSpecificView, saveUserName, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData} = useContext(UserContext);
 
     const { name, id } = useParams();
-    const [messageData, setMessageData] = useState(null);
+
+
+    setSaveGroupName(name)
+    setSaveChannelId(id)
 
     useEffect(() => {
         setSelectSpecificView({
@@ -66,7 +68,6 @@ function GroupChannelView() {
         })
     }, [])
 
-  
     useEffect(() => {
       const fetchData = async () => {
         const data = await loader(name, id)();
@@ -74,11 +75,6 @@ function GroupChannelView() {
       };
       fetchData();
     }, [name, id]);
-
-    async function refreshMsgs() {
-        const data = await loader(name, id)();
-        setMessageData(data);
-    }
   
     if (!messageData) {
       return <div>Loading...</div>;
