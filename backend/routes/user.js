@@ -60,7 +60,7 @@ router.post("/login", async (req, res) => {
 })
 
 
-// POST - Sign up
+// POST - Sign up with token
 router.post('/', async (req, res) => {
     await db.read()
     
@@ -119,6 +119,37 @@ router.delete('/:id', async (req, res) => {
 
         return res.sendStatus(200)
     }
+})
+
+
+// PUT - Edit user
+router.put('/:id', async (req, res) => {
+    
+    let id = Number(req.params.id)
+
+
+    let editedUser = req.body
+
+    await db.read()
+
+    const users = db.data.users
+
+    let userToEdit = users.find((user) => user.id === id)
+
+    if(!userToEdit) {
+        return res.status(400).send({message: 'Kunde inte hitta användaren'})
+    } else {
+        userToEdit.username = editedUser.username
+        userToEdit.password = editedUser.password
+
+        db.data.users[userToEdit] = editedUser;
+
+        await db.write()
+
+        res.status(200).send(JSON.stringify(editedUser))
+    }
+
+    
 })
 
 
