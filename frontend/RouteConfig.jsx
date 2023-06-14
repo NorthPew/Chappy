@@ -8,8 +8,9 @@ import Root from "./routes/Root";
 import {loader as groupsLoader}  from "./components/SideHeader";
 import GroupChannelView, {loader as channelsLoader} from "./routes/GroupChannelView";
 
+import {loader as usersLoader} from "./components/ChannelsOrFriends"
 
-import Start, {loader as usersLoader} from "./routes/Start";
+import Start from "./routes/Start";
 import GroupView from "./routes/GroupView";
 
 

@@ -19,6 +19,15 @@ function generateToken(getUserID) {
     return token
 }
 
+// Get - users
+router.get("/", async (req, res) => {
+    await db.read()
+    
+    const users = db.data.users
+
+    res.status(200).send(users)
+})
+
 // POST - login
 router.post("/login", async (req, res) => {
 
@@ -77,11 +86,6 @@ router.post('/', async (req, res) => {
         password: userPassword
     }
 
-    let addUserRoute = {
-        id: createUser.id,
-        username: createUser.username
-    }
-
     if (!req.body || !userName || !userPassword) {
         res.status(400).send({ message: 'Användarnamn och lösenord måste vara ifyllda!'})
 
@@ -89,9 +93,6 @@ router.post('/', async (req, res) => {
     }
 
     db.data.users.push(createUser)
-
-    // Adding user to startpage
-    db.data.routes.users.push(addUserRoute)
 
     await db.write()
 
@@ -113,8 +114,6 @@ router.delete('/:id', async (req, res) => {
     } else {
         db.data.users = users.filter((user) => user.id !== id)
 
-        db.data.routes.users = db.data.routes.users.filter((user => user.id !== id))
-
         await db.write()
 
         return res.sendStatus(200)
@@ -126,7 +125,6 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     
     let id = Number(req.params.id)
-
 
     let editedUser = req.body
 
@@ -142,18 +140,11 @@ router.put('/:id', async (req, res) => {
         userToEdit.username = editedUser.username
         userToEdit.password = editedUser.password
 
-        let editUserRoute = {
-            id: userToEdit.id,
-            username: editedUser.username
-        }
-
         db.data.users[userToEdit] = editedUser;
-
-        let userRouteToEdit = db.data.routes.users.find((user) => user.id === id)
 
         await db.write()
 
-        res.status(200).send(JSON.stringify(editedUser))
+        res.status(200).send()
     }
 
     

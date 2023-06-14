@@ -9,25 +9,9 @@
       "id": 2694,
       "username": "VVV",
       "password": "123"
-    },
-    {
-      "id": 8979,
-      "username": "Evert",
-      "password": "123"
-    },
-    {
-      "id": 3582,
-      "username": "ErikSaade",
-      "password": "111"
-    },
-    {
-      "id": 678,
-      "username": "ErikSaade",
-      "password": "123"
     }
   ],
-  "routes": {
-    "groups": [
+  "groups": [
       {
         "id": 1,
         "name": "chappy",
@@ -37,46 +21,34 @@
           "1": [
             {
               "id": 1,
-              "title": "# Public Chat",
+              "title": "# Random Channel",
               "public": true
             }
           ],
           "2": [
             {
               "id": 2,
-              "title": "# Private Chat",
+              "title": "# Private Channel",
               "public": false
             }
           ],
           "3": [
             {
-              "id": 2,
-              "title": "# Koda Chat",
+              "id": 3,
+              "title": "# Code Channel",
               "public": true
+            }
+          ],
+          "4": [
+            {
+              "id": 4,
+              "title": "# Group 1 Channel",
+              "public": false
             }
           ]
         }
       }
-    ],
-    "users": [
-      {
-        "id": 8144,
-        "username": "Hajime"
-      },
-      {
-        "id": 8979,
-        "username": "Evert"
-      },
-      {
-        "id": 3582,
-        "username": "ErikSaade"
-      },
-      {
-        "id": 678,
-        "username": "ErikSaade"
-      }
-    ]
-  },
+  ],
   "messages": {
     "groups": {
       "chappy": {
@@ -201,18 +173,6 @@
                   "username": "111"
                 }
               ]
-            },
-            {
-              "id": 282727,
-              "content": "Ettt",
-              "time": "11:52:18",
-              "date": "2023-06-14",
-              "sender": [
-                {
-                  "id": 6540,
-                  "username": "123"
-                }
-              ]
             }
           ],
           "2": [
@@ -225,32 +185,6 @@
                 {
                   "id": 3582,
                   "username": "ErikSaade"
-                }
-              ]
-            }
-          ],
-          "3": [
-            {
-              "id": 695205,
-              "content": "Insomnia is nice!",
-              "time": "19:47",
-              "date": "2023-06-10",
-              "sender": [
-                {
-                  "id": 8144,
-                  "username": "Hajime"
-                }
-              ]
-            },
-            {
-              "id": 91781,
-              "content": "Elak!",
-              "time": "13:37",
-              "date": "2023-06-14",
-              "sender": [
-                {
-                  "id": 4342,
-                  "username": "Elak"
                 }
               ]
             }

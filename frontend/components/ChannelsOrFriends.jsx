@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { UserContext } from "../ContextRoot";
 import styled from "styled-components";
 import { NavLink, useLoaderData } from "react-router-dom";
-
+import { getUsers } from "../data/getUsers";
 
 import AccountPanel from "./AccountPanel";
-import { loader } from "./SideHeader";
+
+export const loader = () => getUsers()
 
 
 const Panel = styled.div`
@@ -69,11 +70,14 @@ const GroupTitle = styled.h1`
 `
 
 function FriendsPanel () {
+    const usersData = useLoaderData()
     return (
         <>
             <p>DMs</p>
             {
-                
+                usersData.map((user) => (
+                    <p key={user.id}>{user.username}</p>
+                ))
             }
         </>
     )

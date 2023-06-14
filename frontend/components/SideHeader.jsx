@@ -2,9 +2,9 @@ import { NavLink, useLoaderData } from "react-router-dom";
 import styled from "styled-components";
 import { UserContext } from "../ContextRoot"
 import { useContext } from "react";
-import { getRoutes } from "../data/getRoutes";
+import { getGroups } from "../data/getGroups";
 
-export const loader = () => getRoutes('groups')
+export const loader = () => getGroups()
 
 const NavBody = styled.nav`
     display: flex;

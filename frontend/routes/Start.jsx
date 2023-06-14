@@ -2,14 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../ContextRoot";
 import styled from "styled-components";
 import ChannelsOrFriends from "../components/ChannelsOrFriends"
-import { useLoaderData } from "react-router-dom";
-
 
 import loginUser from "../data/loginUser";
 import authorize from "../data/authorize";
-import { getRoutes } from "../data/getRoutes";
-
-export const loader = () => getRoutes("users")
 
 // Login or Register
 import ice from "../images/background.jpg"
@@ -73,15 +68,9 @@ const Wrapper = styled.div`
 `
 
 function UserStart() {
-    const usersData = useLoaderData()
     return (
         <Wrapper>
             <ChannelsOrFriends />
-            {
-                usersData.map((user) => (
-                    <p key={user.id}>{user.username}</p>
-                ))
-            }
         </Wrapper>
     )
 }
