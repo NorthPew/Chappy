@@ -1,6 +1,7 @@
 import { API_URL } from "./constants";
 
 async function sendMessage(route, channel, message) {
+    console.log("Sending message...");
     const options = {
         method: 'POST',
         headers: {

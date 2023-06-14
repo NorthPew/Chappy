@@ -100,6 +100,8 @@ router.post('/', async (req, res) => {
     res.send(registerPackage)
 })
 
+
+// Delete - User by id
 router.delete('/:id', async (req, res) => {
     let id = Number(req.params.id)
 

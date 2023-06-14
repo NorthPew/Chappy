@@ -12,42 +12,42 @@
     }
   ],
   "groups": [
-      {
-        "id": 1,
-        "name": "chappy",
-        "title": "Chappy | Lättåtkomliga gruppchatten",
-        "icon": "public",
-        "channels": {
-          "1": [
-            {
-              "id": 1,
-              "title": "# Random Channel",
-              "public": true
-            }
-          ],
-          "2": [
-            {
-              "id": 2,
-              "title": "# Private Channel",
-              "public": false
-            }
-          ],
-          "3": [
-            {
-              "id": 3,
-              "title": "# Code Channel",
-              "public": true
-            }
-          ],
-          "4": [
-            {
-              "id": 4,
-              "title": "# Group 1 Channel",
-              "public": false
-            }
-          ]
-        }
+    {
+      "id": 1,
+      "name": "chappy",
+      "title": "Chappy | Lättåtkomliga gruppchatten",
+      "icon": "public",
+      "channels": {
+        "1": [
+          {
+            "id": 1,
+            "title": "# Random Channel",
+            "public": true
+          }
+        ],
+        "2": [
+          {
+            "id": 2,
+            "title": "# Private Channel",
+            "public": false
+          }
+        ],
+        "3": [
+          {
+            "id": 3,
+            "title": "# Code Channel",
+            "public": true
+          }
+        ],
+        "4": [
+          {
+            "id": 4,
+            "title": "# Group 1 Channel",
+            "public": false
+          }
+        ]
       }
+    }
   ],
   "messages": {
     "groups": {
@@ -56,21 +56,9 @@
           "1": [
             {
               "id": 1,
-              "content": "Hello this is a test message!",
-              "time": "14:28",
-              "date": "2023-06-09",
-              "sender": [
-                {
-                  "id": 8144,
-                  "username": "Hajime"
-                }
-              ]
-            },
-            {
-              "id": 699549,
-              "content": "This was sent using Insomnia!",
-              "time": "14:00",
-              "date": "2023-06-10",
+              "content": "Hello this is an edited message with Insomnia",
+              "time": "18:00",
+              "date": "2023-06-14",
               "sender": [
                 {
                   "id": 8144,
@@ -175,20 +163,7 @@
               ]
             }
           ],
-          "2": [
-            {
-              "id": 144566,
-              "content": "Erik Saade är bäst",
-              "time": "11:19:39",
-              "date": "2023-06-14",
-              "sender": [
-                {
-                  "id": 3582,
-                  "username": "ErikSaade"
-                }
-              ]
-            }
-          ]
+          "2": []
         }
       }
     },

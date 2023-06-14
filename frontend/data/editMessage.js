@@ -1,15 +1,15 @@
 import { API_URL } from "./constants";
 
-async function getUsers() {
-    console.log('Getting users...');
+async function editMessage(route, channel, messageId) {
+    console.log('Editing message...');
     const options = {
-        method: 'GET',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         } 
     }
     
-    const response = await fetch(API_URL + 'user/', options)
+    const response = await fetch(API_URL + `message/${route}/${channel}/${messageId}`, options)
 
     const data = await response.json()
 
@@ -18,4 +18,4 @@ async function getUsers() {
     return data
 }
 
-export {getUsers}
+export {editMessage}

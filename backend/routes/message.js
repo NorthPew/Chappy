@@ -63,9 +63,6 @@ router.post('/:route/:channel', async (req, res) => {
     await db.read()
 
     // Checks if the message will be sent to group first or DM second
-    let combinedChat;
-
-    // Checks if the message will be sent to group first or DM second
     if (route !== 'DM') {
 
         if(!db.data.messages.groups[route]) {
@@ -98,6 +95,7 @@ router.post('/:route/:channel', async (req, res) => {
 }
 })
 
+// PUT - Message by id
 router.put('/:route/:channel/:id', async (req, res) => {
     // Route will be a DM or group
     // Channel will be specific chat in a group or DM for a chat with a user
@@ -105,7 +103,7 @@ router.put('/:route/:channel/:id', async (req, res) => {
     // Params
     let route = req.params.route
     let channel = req.params.channel
-    let id = req.params.id // Message ID
+    let id = Number(req.params.id) // Message ID
 
     await db.read()
 
@@ -140,11 +138,58 @@ router.put('/:route/:channel/:id', async (req, res) => {
         oldChatMSG.date = editedChatMSG.date
 
         combinedChatRoute[oldChatMSG] = editedChatMSG
-    
+
         await db.write()
-    
+
         res.status(200).send(editedChatMSG)
     }
 })
+
+// DELETE - Message by id
+router.delete('/:route/:channel/:id', async (req, res) => {
+    // Route will be a DM or group
+    // Channel will be specific chat in a group or DM for a chat with a user
+    
+    // Params
+    let route = req.params.route
+    let channel = req.params.channel
+    let id = Number(req.params.id) // Message ID
+
+    await db.read()
+
+    let combinedChatRoute;
+
+    // Checks if the message will be sent to group first or DM second
+    if (route !== 'DM') {
+        combinedChatRoute = db.data.messages.groups[route].channels[channel]
+
+        let messageToDelete = combinedChatRoute.find(message => message.id === id)
+
+        if(!messageToDelete) {
+            return res.status(400).send({ message: 'Kunde inte hitta meddelandet!'})
+        } else {
+            db.data.messages.groups[route].channels[channel] = combinedChatRoute.filter((message) => message.id !== id)
+
+            await db.write()
+
+            res.status(200).send(combinedChatRoute)
+        }
+    } else {
+        combinedChatRoute = db.data.messages.dms[route].channels[channel]
+
+        let messageToDelete = combinedChatRoute.find(message => message.id === id)
+
+        if(!messageToDelete) {
+            return res.status(400).send({ message: 'Kunde inte hitta meddelandet!'})
+        } else {
+            db.data.messages.groups[route].channels[channel] = combinedChatRoute.filter((message) => message.id !== id)
+
+            await db.write()
+
+            res.status(200).send(combinedChatRoute)
+        }
+    }
+})
+
 
 export default router
