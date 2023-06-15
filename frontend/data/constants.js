@@ -1,1 +1,1 @@
-export const API_URL = 'http://localhost:666/api/'
+export const API_URL = 'https://f22-norfe-chappy.onrender.com'
