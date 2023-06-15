@@ -158,23 +158,10 @@
     "dms": {
       "4185": [
         {
-          "id": 735499,
-          "content": "Det går att skriva med sig själv!!",
+          "id": 330738,
+          "content": "Who are you?",
           "edited": false,
-          "time": "11:49:14",
-          "date": "2023-06-15",
-          "sender": [
-            {
-              "id": 4185,
-              "username": "EEE"
-            }
-          ]
-        },
-        {
-          "id": 215606,
-          "content": "Test",
-          "edited": false,
-          "time": "13:43:27",
+          "time": "14:11:25",
           "date": "2023-06-15",
           "sender": [
             {
@@ -186,10 +173,10 @@
       ],
       "8144": [
         {
-          "id": 145327,
-          "content": "Testning",
-          "edited": true,
-          "time": "11:35",
+          "id": 602608,
+          "content": "Test",
+          "edited": false,
+          "time": "14:09:47",
           "date": "2023-06-15",
           "sender": [
             {
@@ -199,36 +186,23 @@
           ]
         },
         {
-          "id": 593654,
-          "content": "Test",
+          "id": 533576,
+          "content": "OMG it finally works to update message list after sending a message!!!",
           "edited": false,
-          "time": "11:47:42",
+          "time": "14:10:10",
           "date": "2023-06-15",
           "sender": [
             {
-              "id": 4185,
-              "username": "EEE"
+              "id": 8144,
+              "username": "Hajime"
             }
           ]
         },
         {
-          "id": 138405,
-          "content": "Hallå där Hajime!!",
+          "id": 985688,
+          "content": "Tho not in group => channel",
           "edited": false,
-          "time": "11:48:27",
-          "date": "2023-06-15",
-          "sender": [
-            {
-              "id": 4185,
-              "username": "EEE"
-            }
-          ]
-        },
-        {
-          "id": 544737,
-          "content": "Test",
-          "edited": false,
-          "time": "13:43:21",
+          "time": "14:12:17",
           "date": "2023-06-15",
           "sender": [
             {

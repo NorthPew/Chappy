@@ -36,7 +36,7 @@ function MessageField() {
     }
 
     // Handlers
-    function handleOnSubmit(event) {
+    async function handleOnSubmit(event) {
         event.preventDefault()
 
         if(messageContent !== "") {
@@ -53,10 +53,10 @@ function MessageField() {
                 }]
             }
 
-            sendMessage(selectSpecificView.route, selectSpecificView.channel, newMessage)
+            await sendMessage(selectSpecificView.route, selectSpecificView.channel, newMessage)
 
             setMessageContent("")
-            refreshMsgs()
+            await refreshMsgs(selectSpecificView.route, selectSpecificView.channel)
 
             console.log(newMessage);
         } else {

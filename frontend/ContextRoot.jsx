@@ -33,12 +33,11 @@ const ContextRoot = ({children}) => {
 
 
     // To refresh message board when sending a message and so on
-    async function refreshMsgs() {
-        const loader = (saveGroupName, saveChannelId) => () => getMessages(saveGroupName, saveChannelId);
-
-        const data = await loader(saveGroupName, saveChannelId)();
+    async function refreshMsgs(route, channel) {
+        const data = await getMessages(route, channel);
         setMessageData(data);
     }
+
 
     // User Login
     const [isLoggedIn, setIsLoggedIn] = useState(false)
