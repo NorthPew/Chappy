@@ -6,6 +6,8 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../ContextRoot";
 import { editMessage } from "../data/editMessage";
 import { getMessages } from "../data/getMessages"
+import deleteMessage from "../data/deleteMessage";
+
 const MessageSender = styled.p`
     font-size: 18px;
     font-weight: 600;
@@ -147,6 +149,10 @@ function GroupChannelView() {
         setEditMessageInput(e.target.value)
     }
 
+    function onClickDeleteMessage(message) {
+        deleteMessage(saveGroupName, saveChannelId, message.id)
+    }
+
     return (
         <MessageBoard>
         {messageData.map((message) => (
@@ -176,7 +182,7 @@ function GroupChannelView() {
                                     edit
                                 </span>
                             </MessageBtn>
-                            <MessageBtn title="Radera meddelandet">
+                            <MessageBtn title="Radera meddelandet" onClick={() => onClickDeleteMessage(message)}>
                                 <span className="material-symbols-outlined">
                                     delete
                                 </span>
