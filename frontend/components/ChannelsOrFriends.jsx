@@ -86,6 +86,12 @@ function FriendsPanel () {
 function ChannelsPanel ({findGroup}) {
     const {isLoggedIn} = useContext(UserContext);
 
+    if(findGroup === undefined) {
+        findGroup = {
+            title: 'Group'
+        }
+    }
+
     const allChannels = useLoaderData()
     return (
         <>
@@ -94,27 +100,29 @@ function ChannelsPanel ({findGroup}) {
                 !isLoggedIn ?
                 allChannels.map((group) => (
                     <>
-                        {Object.values(group.channels).flat().map((channel) => (
+                        {
+                            group.channels.map((channel) => (
                             channel.public ? (
                                 <PanelLink key={channel.id} to={`/group/${group.name}/channel/${channel.id}`}>
-                                    {channel.title}
-                                </PanelLink>
-                            ) : (
-                                <DisabledPanelLink key={channel.id}>
-                                    {`${channel.title} 🔒`}
-                                </DisabledPanelLink>
-                            )
-                        ))}
+                                {channel.title}
+                            </PanelLink>
+                        ) : (
+                            <DisabledPanelLink key={channel.id}>
+                                {`${channel.title} 🔒`}
+                            </DisabledPanelLink>
+                        )
+                    ))}
                     </>
                 ))
             : allChannels.map((group) => (
                 <>
-                    {Object.values(group.channels).flat().map((channel) => (
-                            <PanelLink key={channel.id} to={`/group/${group.name}/channel/${channel.id}`}>
-                                {channel.title}
-                            </PanelLink>
-                        )
-                    )}
+                    {
+                    group.channels.map((channel) => (
+                        <PanelLink key={channel.id} to={`/group/${group.name}/channel/${channel.id}`}>
+                        {channel.title}
+                    </PanelLink>
+                    ))
+                    }
                 </>
             )) }
         </>
