@@ -90,7 +90,7 @@ function ChatView() {
     const [editMessageInput, setEditMessageInput] = useState("");
 
         // Context
-        const {isLoggedIn, setSelectSpecificView, saveUserName, saveUserId, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData} = useContext(UserContext);
+        const {isLoggedIn, setSelectSpecificView, saveUserName, saveUserId, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData, refreshMsgs} = useContext(UserContext);
 
         // Params
         const { name, id } = useParams();
@@ -152,6 +152,8 @@ function ChatView() {
             console.log(result);
     
             setEditingMessage({})
+
+            await refreshMsgs(saveGroupName, saveChannelId)
         }
 
     }

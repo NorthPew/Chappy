@@ -87,7 +87,7 @@ function GroupChannelView() {
 
 
     // Context
-    const {isLoggedIn, setSelectSpecificView, saveUserName, saveUserId, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData} = useContext(UserContext);
+    const {isLoggedIn, setSelectSpecificView, saveUserName, saveUserId, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData, refreshMsgs} = useContext(UserContext);
 
     // Params
     const { name, id } = useParams();
@@ -146,10 +146,12 @@ function GroupChannelView() {
             }
     
             const result = await editMessage(saveGroupName, saveChannelId, editingMessage.id, editedMessage)
-    
+            
             console.log(result);
     
             setEditingMessage({})
+
+            await refreshMsgs(saveGroupName, saveChannelId)
         }
 
     }

@@ -87,6 +87,12 @@ router.post('/:route/:channel', async (req, res) => {
             await db.write();
 
             res.send(newMessage);
+          } else {
+            db.data.messages.groups[route].channels[channel].push(newMessage);
+
+            await db.write();
+
+            res.send(newMessage);
           }
         } else {
             if(!db.data.messages.dms[channel]) {
@@ -144,7 +150,7 @@ router.put('/:route/:channel/:id', async (req, res) => {
     } else {
         let editedChatMSG = req.body;
 
-        combinedChatRoute = db.data.messages.dms[route].channels[channel]
+        combinedChatRoute = db.data.messages.dms[channel]
 
         let oldChatMSG = combinedChatRoute.find(message => message.id === id)
 

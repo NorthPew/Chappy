@@ -53,12 +53,11 @@ function MessageField() {
                 }]
             }
 
-            await sendMessage(selectSpecificView.route, selectSpecificView.channel, newMessage)
+            sendMessage(selectSpecificView.route, selectSpecificView.channel, newMessage)
 
             setMessageContent("")
-            await refreshMsgs(selectSpecificView.route, selectSpecificView.channel)
 
-            console.log(newMessage);
+            refreshMsgs(selectSpecificView.route, selectSpecificView.channel)
         } else {
             console.log('Skriv något innan du skickar!');
         }

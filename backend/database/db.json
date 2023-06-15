@@ -66,15 +66,16 @@
             },
             {
               "id": 703358,
-              "content": "Insomnia is nice!",
-              "time": "19:47",
-              "date": "2023-06-10",
+              "content": "Insomnia is nice!!",
+              "time": "14:27:07",
+              "date": "2023-06-15",
               "sender": [
                 {
                   "id": 8144,
                   "username": "Hajime"
                 }
-              ]
+              ],
+              "edited": true
             },
             {
               "id": 322413,
@@ -102,15 +103,16 @@
             },
             {
               "id": 734341,
-              "content": "Detta är ett test!",
-              "time": "11:46:21",
-              "date": "2023-06-13",
+              "content": "Detta är ett riktigt test!",
+              "time": "14:21:50",
+              "date": "2023-06-15",
               "sender": [
                 {
                   "id": 8144,
                   "username": "Hajime"
                 }
-              ]
+              ],
+              "edited": true
             },
             {
               "id": 838666,
@@ -148,6 +150,32 @@
                   "username": "Hajime"
                 }
               ]
+            },
+            {
+              "id": 565344,
+              "content": "Test",
+              "edited": false,
+              "time": "14:25:55",
+              "date": "2023-06-15",
+              "sender": [
+                {
+                  "id": 8144,
+                  "username": "Hajime"
+                }
+              ]
+            },
+            {
+              "id": 21199,
+              "content": "Hello",
+              "edited": false,
+              "time": "14:26:38",
+              "date": "2023-06-15",
+              "sender": [
+                {
+                  "id": 8144,
+                  "username": "Hajime"
+                }
+              ]
             }
           ],
           "2": [],
@@ -174,9 +202,9 @@
       "8144": [
         {
           "id": 602608,
-          "content": "Test",
-          "edited": false,
-          "time": "14:09:47",
+          "content": "Test 3?",
+          "edited": true,
+          "time": "14:19:22",
           "date": "2023-06-15",
           "sender": [
             {
