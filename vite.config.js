@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://f22-norfe-chappy.onrender.com/'
+      '/api': 'https://f22-norfe-chappy.onrender.com'
     }
   }
 })
