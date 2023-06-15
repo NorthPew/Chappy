@@ -69,6 +69,11 @@ const PanelTitle = styled.h1`
     font-weight: 600;
 `
 
+const PanelLinkBox = styled.div`
+    display: flex;
+    flex-flow: column wrap;
+`
+
 function FriendsPanel () {
     const usersData = useLoaderData()
     return (
@@ -99,7 +104,7 @@ function ChannelsPanel ({findGroup}) {
             {
                 !isLoggedIn ?
                 allChannels.map((group) => (
-                    <>
+                    <PanelLinkBox key={group.id}>
                         {
                             group.channels.map((channel) => (
                             channel.public ? (
@@ -112,7 +117,7 @@ function ChannelsPanel ({findGroup}) {
                             </DisabledPanelLink>
                         )
                     ))}
-                    </>
+                    </PanelLinkBox>
                 ))
             : allChannels.map((group) => (
                 <>

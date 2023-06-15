@@ -1,7 +1,7 @@
 
 import ChannelsOrFriends from "../components/ChannelsOrFriends"
 import { Outlet, useParams, useLoaderData } from "react-router-dom"
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../ContextRoot";
 
 function GroupView() {
@@ -18,7 +18,9 @@ function GroupView() {
         )
     }
 
-    setIsOnGroup(true)
+    useEffect(() => {
+        setIsOnGroup(true);
+    }, []);
     return (
         <div>
             <ChannelsOrFriends findGroup={findGroup} />

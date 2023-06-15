@@ -227,7 +227,10 @@ function LoginOrRegister() {
 function Start() {
     const {isLoggedIn, setIsOnGroup} = useContext(UserContext);
 
-    setIsOnGroup(false)
+    useEffect(() => {
+        setIsOnGroup(false);
+    }, []);
+    
     return (
         <>
             {isLoggedIn ? <UserStart /> : <LoginOrRegister />}
