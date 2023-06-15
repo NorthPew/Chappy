@@ -163,7 +163,7 @@ function ChatView() {
     }
 
     async function onClickDeleteMessage(message) {
-        deleteMessage(saveGroupName, saveChannelId, message.id)
+        await deleteMessage(saveGroupName, saveChannelId, message.id)
 
         await refreshMsgs(saveGroupName, saveChannelId)
     }
