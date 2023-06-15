@@ -50,16 +50,21 @@ To do it locally, you have to change some files before you can do your own magic
 To try out this project you will need a terminal (unix based or git preferred) and node installed.
  - [ ] Please start your favorite terminal and copy this line: `git clone https://github.com/NorthPew/Chappy.git`
  - [ ] After that type in this command in terminal: `npm install -y`
- - [ ] Navigate to `vite.config.js` and change /api: to `localhost:666`
+  - [ ] Open a new terminal and type: `node server.js`
+  
+  If you don't want to look at the *frontend*, then you are ready to rock!
+  Here's the rest if you want to look at the frontend:
+  - [ ] Navigate to `vite.config.js` and change /api: to `localhost:666`
  - [ ] Navigate to `frontend/data/constans.js` and edit *API_URL* to `localhost:666/api/`
- - [ ] Then type: `npm run dev`
- - [ ] Open a new terminal and type: `node server.js`
+ - [ ] Then type: `npm run dev` 
  - [ ] Open up your favorite web browser and use this link: `http://localhost:5173/`
  - [ ] Ready to rock this world! 🎸
+ 
+ *Could have done it easier for you*😅
 ### Live on render ❤️
 To experience this project live, without the hassle of cloning and changing some stuff. Can you do everything live on *render*.
 - Visit [render](https://f22-norfe-chappy.onrender.com) 🚀
- - Give it some time to load, this web service is using a free supscription.
+ - Give it some time to load, this web service is using a free subscription.
  - Please mind your language on the chat app! 😅
 
 ## Endpoints
