@@ -76,7 +76,7 @@ function FriendsPanel () {
             <PanelTitleBox><PanelTitle>DMs</PanelTitle></PanelTitleBox>
             {
                 usersData.map((user) => (
-                    <p key={user.id}>{user.username}</p>
+                    <PanelLink key={user.id} to={`/dm/${user.id}`}>{user.username}</PanelLink>
                 ))
             }
         </>

@@ -1,12 +1,152 @@
+// React & styled
+import { useLoaderData, useParams } from "react-router-dom"
+import styled from "styled-components";
+import { useContext, useState, useEffect } from "react";
+
+import { UserContext } from "../ContextRoot";
+import { editMessage } from "../data/editMessage";
+import { getMessages } from "../data/getMessages"
+import deleteMessage from "../data/deleteMessage";
+
+import ChannelsOrFriends from "../components/ChannelsOrFriends";
 import MessageField from "../components/MessageField"
+
+export const loader = (dmName, dmUserId) => () => getMessages(dmName, dmUserId)
 
 
 function ChatView() {
+
+    const [editingMessage, setEditingMessage] = useState({});
+    const [editMessageInput, setEditMessageInput] = useState("");
+
+        // Context
+        const {isLoggedIn, setSelectSpecificView, saveUserName, saveUserId, saveGroupName, setSaveGroupName, saveChannelId, setSaveChannelId, messageData, setMessageData} = useContext(UserContext);
+
+        // Params
+        const { name, id } = useParams();
+
+        // To tell messageField where to send a message
+        setSaveGroupName(name)
+        setSaveChannelId(id)
+
+        // To tell MessageField what to display
+        useEffect(() => {
+            setSelectSpecificView({
+                route: name,
+                channel: id
+            })
+        }, [])
+
+
+        // Changes what DM chat to display using params above
+        useEffect(() => {
+            const fetchData = async () => {
+            const data = await loader(name, id)();
+            setMessageData(data);
+            };
+            fetchData();
+        }, [name, id]);
+
+
+        // If messageData is still null
+        if(!messageData) {
+            return <div>Loading...</div>;
+        }
+        
+        
+    // Message stuff
+    function onEditMessage(message) {
+        setEditingMessage(message)
+    }
+
+    async function onSubmitEditedMessage(e) {
+        e.preventDefault();
+
+        if (editMessageInput !== "") {
+            let currentDate = new Date().toJSON().slice(0, 10);
+            let currentTime = new Date(new Date().getTime() + 1*60*60).toLocaleTimeString();
+    
+            let editedMessage = {
+                content: editMessageInput,
+                time: currentTime,
+                date: currentDate,
+                edited: true,
+                sender: [{
+                    "id": saveUserId,
+                    "username": saveUserName
+                }]
+            }
+    
+            const result = await editMessage(saveGroupName, saveChannelId, editingMessage.id, editedMessage)
+    
+            console.log(result);
+    
+            setEditingMessage({})
+        }
+
+    }
+
+    function onChangeEditMessage(e) {
+        setEditMessageInput(e.target.value)
+    }
+
+    function onClickDeleteMessage(message) {
+        deleteMessage(saveGroupName, saveChannelId, message.id)
+    }
+    
     return (
         <>
-            {
-                // Here will be all the messages
-            }
+           {messageData.map((message) => (
+            <MessageListElem key={message.id}>
+                {
+                    editingMessage.id === message.id ?
+                    (
+                        <form onSubmit={onSubmitEditedMessage}>
+                            <MessageEditInputField type="text" value={editMessageInput} onChange={onChangeEditMessage} placeholder={message.content}></MessageEditInputField>
+                        </form>
+                    )
+                    : message.sender.map((sender) => (
+                    isLoggedIn && saveUserName === sender.username ?
+                    <>
+                        <MessageSenderTimeBox>
+                            <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
+                            <MessageDate>{message.date}</MessageDate>
+                            <MessageTime>{message.time}</MessageTime>
+                                    {
+                            message.edited && 
+                                <MessageEdited>
+                                    (Edited)
+                                </MessageEdited>
+                            }
+                            <MessageBtn title="Ändra på meddelandet" onClick={() => onEditMessage(message)}>
+                                <span className="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </MessageBtn>
+                            <MessageBtn title="Radera meddelandet" onClick={() => onClickDeleteMessage(message)}>
+                                <span className="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </MessageBtn>
+                        </MessageSenderTimeBox>
+                    </>
+                    : <MessageSenderTimeBox>
+                    <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
+                    <MessageDate>{message.date}</MessageDate>
+                    <MessageTime>{message.time}</MessageTime>
+                    {
+                    message.edited && 
+                        <MessageEdited>
+                            (Edited)
+                        </MessageEdited>
+                    }
+                </MessageSenderTimeBox>
+
+                ))}
+                <MessageText>{message.content}
+                </MessageText>
+            </MessageListElem>
+        ))}
             <MessageField />
         </>
     )

@@ -12,6 +12,7 @@ import {loader as usersLoader} from "./components/ChannelsOrFriends"
 
 import Start from "./routes/Start";
 import GroupView from "./routes/GroupView";
+import ChatView, {loader as chatsLoader} from "./routes/ChatView";
 
 
 const router = createBrowserRouter([
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
                         loader: channelsLoader,
                     }
                 ]
+            },
+            {
+                path: '/:name/:id',
+                element: <ChatView />,
+                loader: chatsLoader
             }
         ]
     }

@@ -37,6 +37,11 @@
           "id": 4,
           "title": "# Group 1 Channel",
           "public": false
+        },
+        {
+          "id": 5,
+          "title": "# Group 2 Channel",
+          "public": true
         }
       ]
     }
@@ -145,7 +150,8 @@
               ]
             }
           ],
-          "2": []
+          "2": [],
+          "3": []
         }
       }
     },

@@ -16,7 +16,7 @@ router.get('/:route/:channel', async (req, res) => {
 
     let combinedChatRoute;
 
-    if (route !== 'DM') {
+    if (route !== 'dm') {
         if (!db.data.messages.groups.hasOwnProperty(route)) {
             res.status(404).send({message: `Group or channel not found. Got: ROUTE: ${route} and CHANNEL: ${channel}`})
         } else {
@@ -27,9 +27,13 @@ router.get('/:route/:channel', async (req, res) => {
             res.send(combinedChatRoute) 
         }
     } else {
-        combinedChatRoute = db.data.messages.dms[route].channels[channel]
+        if (!db.data.messages.dms.hasOwnProperty(route)) {
+            res.status(404).send({message: `DM or userID not found. Got: DM: ${route} and userID: ${channel}`})
+        } else {
+            combinedChatRoute = db.data.messages.dms[route].channels[channel]
 
-        res.send(combinedChatRoute)
+            res.send(combinedChatRoute)
+        }
     }
 })
 
@@ -65,7 +69,7 @@ router.post('/:route/:channel', async (req, res) => {
     await db.read()
 
     // Checks if the message will be sent to group first or DM second
-    if (route !== 'DM') {
+    if (route !== 'dm') {
 
         if(!db.data.messages.groups[route]) {
             db.data.messages.groups[route] = {"channels": {[channel]: []} };
@@ -112,7 +116,7 @@ router.put('/:route/:channel/:id', async (req, res) => {
     let combinedChatRoute;
 
     // Checks if the message will be sent to group first or DM second
-    if (route !== 'DM') {
+    if (route !== 'dm') {
         let editedChatMSG = req.body;
 
         combinedChatRoute = db.data.messages.groups[route].channels[channel]
@@ -164,7 +168,7 @@ router.delete('/:route/:channel/:id', async (req, res) => {
     let combinedChatRoute;
 
     // Checks if the message will be sent to group first or DM second
-    if (route !== 'DM') {
+    if (route !== 'dm') {
         combinedChatRoute = db.data.messages.groups[route].channels[channel]
 
         let messageToDelete = combinedChatRoute.find(message => message.id === id)

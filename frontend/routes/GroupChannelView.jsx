@@ -95,6 +95,8 @@ function GroupChannelView() {
     setSaveGroupName(name)
     setSaveChannelId(id)
 
+
+    // To tell MessageField what to display
     useEffect(() => {
         setSelectSpecificView({
             route: name,
@@ -102,6 +104,8 @@ function GroupChannelView() {
         })
     }, [])
 
+
+    // Changes what channel to display using params above
     useEffect(() => {
       const fetchData = async () => {
         const data = await loader(name, id)();
@@ -110,10 +114,14 @@ function GroupChannelView() {
       fetchData();
     }, [name, id]);
   
+
+    // If messageData is still null
     if (!messageData) {
       return <div>Loading...</div>;
     }
 
+
+    // Message stuff
     function onEditMessage(message) {
         setEditingMessage(message)
     }
