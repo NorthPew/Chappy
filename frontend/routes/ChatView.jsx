@@ -99,13 +99,13 @@ function ChatView() {
         setSaveGroupName(name)
         setSaveChannelId(id)
 
-        // To tell MessageField what to display
-        useEffect(() => {
-            setSelectSpecificView({
-                route: name,
-                channel: id
-            })
-        }, [])
+    // To tell MessageField what to display
+            useEffect(() => {
+                setSelectSpecificView({
+                    route: name,
+                    channel: id
+                })
+            }, [name, id])
 
 
         // Changes what DM chat to display using params above
@@ -176,7 +176,7 @@ function ChatView() {
                         </form>
                     )
                     : message.sender.map((sender) => (
-                    isLoggedIn && saveUserName === sender.username ?
+                        isLoggedIn && saveUserName === sender.username && saveUserId === sender.id ?
                     <>
                         <MessageSenderTimeBox>
                             <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>

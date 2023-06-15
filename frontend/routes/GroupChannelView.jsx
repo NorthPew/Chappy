@@ -103,7 +103,7 @@ function GroupChannelView() {
             route: name,
             channel: id
         })
-    }, [])
+    }, [name, id])
 
 
     // Changes what channel to display using params above
@@ -175,7 +175,7 @@ function GroupChannelView() {
                             </form>
                         )
                         : message.sender.map((sender) => (
-                        isLoggedIn && saveUserName === sender.username ?
+                        isLoggedIn && saveUserName === sender.username && saveUserId === sender.id ?
                         <>
                             <MessageSenderTimeBox>
                                 <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
