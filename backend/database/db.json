@@ -6,8 +6,8 @@
       "password": "123"
     },
     {
-      "id": 2694,
-      "username": "VVV",
+      "id": 4185,
+      "username": "EEE",
       "password": "123"
     }
   ],
@@ -156,20 +156,22 @@
       }
     },
     "dms": {
+      "4185": [],
       "8144": [
-      {
-        "id": 145327,
-        "content": "Testning",
-        "edited": true,
-        "time": "11:35",
-        "date": "2023-06-15",
-        "sender": [
-          {
-            "id": 8144,
-            "username": "Hajime"
-          }
-        ]
-      }
-    ]}
+        {
+          "id": 145327,
+          "content": "Testning",
+          "edited": true,
+          "time": "11:35",
+          "date": "2023-06-15",
+          "sender": [
+            {
+              "id": 8144,
+              "username": "Hajime"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

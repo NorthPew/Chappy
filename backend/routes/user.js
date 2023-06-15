@@ -96,6 +96,11 @@ router.post('/', async (req, res) => {
 
     await db.write()
 
+    // Creating new route for dms...
+    db.data.messages.dms[createUser.id] = []
+
+    await db.write()
+
     let registerPackage = {token: generateToken(createUser.id), username: createUser.username, id: createUser.id, status: "Success"}
     res.send(registerPackage)
 })
