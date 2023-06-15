@@ -1,18 +1,35 @@
-﻿This is not the completed version of the **readme**
-# 👋 Welcome to Chappy!
+﻿# 👋 Welcome to Chappy!
 ## Introduction
-*Chappy* is a school project that was made with love and possible by **Norfe**.
+*Chappy* is a *school project* that was made with love and possible by **Norfe**.
 This project is a fullstack application using *JavaScript*, some *HTML* and *CSS*.
-Believe it!
+Believe it! 👊
 
 It has charms of famous chat platforms such as *Discord* and *Guilded*, when it comes to design and layout. 
 The creator of this project could have made a simpler GUI, but wanted to challange himself.
 The project could have been made with only backend and do all requests using *Insomnia*, but it works both sides!
 To spice things up, this project has authorization with the help of *JWT*.
-
+You get authorized immediately when you register, login or changing username and password.
 With this project can you send messages to group channels and to other users who are in the database.
-If the creator has time, it will also be possible to add new groups and new group channels. *Time will tell...*
+
+*If the creator has time, it will also be possible to add new groups and new group channels. Time will tell...*
 *Maybe it will be a challange over summer or in the near future...*
+*Also DMs need to be redone to be fully DMs instead of Group DMs...*
+
+I hope you don't mind the sudden Swedish messages here and there! 😅
+
+## What can you do in this chat app?
+- You can read messages as logged out in channels of the group Chappy.
+- You can register an account.
+- Login with an account that exists in the database.
+- Write a message at a channel.
+- Write a DM to your favorite YouTuber 😂
+- Edit or delete a message.
+- Change username and password of your account.
+- Delete your account.
+
+Sounds thrilling right? 
+Go to *where to start* and begin your journey, young traveler! 🧙‍♂️
+
 
 ### Frontend
 It has been built upon *React*, *Vite*, *React router dom* and *Styled components*.
@@ -23,23 +40,31 @@ The frontend resembles much like Discord with it's look and feel.
 You can find all the frontend packages at [npm](https://www.npmjs.com/) ❤️
 ### Backend
 The backend side of the project is nearly a *RESTful API* that uses *lowDB*, *CORS*, *JSON Web Tokens*, *Express* and some *Node*.
-More of backend down the line.
+More of backend down the line. Head down to *endpoints*.
 
 You can find all the backend packages at [npm](https://www.npmjs.com/) ❤️
 ## Where to start 
 You  can start messing around with this project locally or live!
+To do it locally, you have to change some files before you can do your own magic!
 ### Locally 💻
-To try out this project you will need a terminal and git installed.
+To try out this project you will need a terminal (unix based or git preferred) and node installed.
  - [ ] Please start your favorite terminal and copy this line: `git clone https://github.com/NorthPew/Chappy.git`
  - [ ] After that type in this command in terminal: `npm install -y`
+ - [ ] Navigate to `vite.config.js` and change /api: to `localhost:666`
+ - [ ] Navigate to `frontend/data/constans.js` and edit *API_URL* to `localhost:666/api/`
  - [ ] Then type: `npm run dev`
  - [ ] Open a new terminal and type: `node server.js`
  - [ ] Open up your favorite web browser and use this link: `http://localhost:5173/`
  - [ ] Ready to rock this world! 🎸
-### Live
+### Live on render ❤️
+To experience this project live, without the hassle of cloning and changing some stuff. Can you do everything live on *render*.
+- Visit [render](https://f22-norfe-chappy.onrender.com) 🚀
+ - Give it some time to load, this web service is using a free supscription.
+ - Please mind your language on the chat app! 😅
+
 ## Endpoints
 To try out the endpoints, please use *Insomnia*.
-To understand the body row, look closely at data modeling.
+To understand the body row, look closely at data modeling  (underneath endpoints).
 ### api/user
 `id` is the id of an user. 
 | Method | URL           | Params | Headers       | Body               | Response                                                      |
@@ -54,11 +79,12 @@ To understand the body row, look closely at data modeling.
 | Method | URL | Response                                      |
 |-------|-----|-----------------------------------------------|
 | GET   | /   | Sends back a list of groups with its channels |
+It would be lots of endpoints for groups, if I had time for it 😂
 ### api/message
 `route` can be a group name such as *chappy* or *dm*.
 `channel` is a form of a number such as 1, 2 and 3.
 `id` is the id of a message.
-
+Example: GET `localhost:666/api/message/chappy/1` or GET `localhost:666/api/message/dm/2319`.
 | Method | URL                  | Params             | Body                        | Response                                                               |
 |--------|----------------------|--------------------|-----------------------------|------------------------------------------------------------------------|
 | GET    | /:route/:channel     | route, channel     | .                           | Sends back a list of all the messages in that group channel or DM chat |
@@ -91,7 +117,7 @@ To understand the body row, look closely at data modeling.
 | title    | String    | The channel's title                                                                |
 | public   | Boolean   | Tells if the channel is public for non logged in users or not                      |
 ### Message 
-#### (Messages => Groups => Channels => Channel ID *or* Messages => DMS => User ID)
+Message looks the same for both channels and DMs.
 | Property | Data type | Short description                              |
 |----------|-----------|------------------------------------------------|
 | id       | Number    | Unique number to identify a message            |
@@ -100,4 +126,4 @@ To understand the body row, look closely at data modeling.
 | sender   | Array     | It tells who the sender was and it's unique id |
 | edited   | Boolean   | It tells if the message has been edited or not |
 
-Thank you for reading this readme! ❤️
+Wow, thank you for reading this readme! ❤️
