@@ -3,6 +3,7 @@ import { useLoaderData, useParams } from "react-router-dom"
 import styled from "styled-components";
 import { useContext, useState, useEffect } from "react";
 
+import MessageField from "../components/MessageField"
 import { UserContext } from "../ContextRoot";
 import { editMessage } from "../data/editMessage";
 import { getMessages } from "../data/getMessages"
@@ -162,59 +163,63 @@ function GroupChannelView() {
     }
 
     return (
-        <MessageBoard>
-        {messageData.map((message) => (
-            <MessageListElem key={message.id}>
-                {
-                    editingMessage.id === message.id ?
-                    (
-                        <form onSubmit={onSubmitEditedMessage}>
-                            <MessageEditInputField type="text" value={editMessageInput} onChange={onChangeEditMessage} placeholder={message.content}></MessageEditInputField>
-                        </form>
-                    )
-                    : message.sender.map((sender) => (
-                    isLoggedIn && saveUserName === sender.username ?
-                    <>
-                        <MessageSenderTimeBox>
-                            <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
-                            <MessageDate>{message.date}</MessageDate>
-                            <MessageTime>{message.time}</MessageTime>
-                                    {
-                            message.edited && 
-                                <MessageEdited>
-                                    (Edited)
-                                </MessageEdited>
-                            }
-                            <MessageBtn title="Ändra på meddelandet" onClick={() => onEditMessage(message)}>
-                                <span className="material-symbols-outlined">
-                                    edit
-                                </span>
-                            </MessageBtn>
-                            <MessageBtn title="Radera meddelandet" onClick={() => onClickDeleteMessage(message)}>
-                                <span className="material-symbols-outlined">
-                                    delete
-                                </span>
-                            </MessageBtn>
-                        </MessageSenderTimeBox>
-                    </>
-                    : <MessageSenderTimeBox>
-                    <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
-                    <MessageDate>{message.date}</MessageDate>
-                    <MessageTime>{message.time}</MessageTime>
+        <>
+            <MessageBoard>
+            {messageData.map((message) => (
+                <MessageListElem key={message.id}>
                     {
-                    message.edited && 
-                        <MessageEdited>
-                            (Edited)
-                        </MessageEdited>
-                    }
-                </MessageSenderTimeBox>
+                        editingMessage.id === message.id ?
+                        (
+                            <form onSubmit={onSubmitEditedMessage}>
+                                <MessageEditInputField type="text" value={editMessageInput} onChange={onChangeEditMessage} placeholder={message.content}></MessageEditInputField>
+                            </form>
+                        )
+                        : message.sender.map((sender) => (
+                        isLoggedIn && saveUserName === sender.username ?
+                        <>
+                            <MessageSenderTimeBox>
+                                <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
+                                <MessageDate>{message.date}</MessageDate>
+                                <MessageTime>{message.time}</MessageTime>
+                                        {
+                                message.edited && 
+                                    <MessageEdited>
+                                        (Edited)
+                                    </MessageEdited>
+                                }
+                                <MessageBtn title="Ändra på meddelandet" onClick={() => onEditMessage(message)}>
+                                    <span className="material-symbols-outlined">
+                                        edit
+                                    </span>
+                                </MessageBtn>
+                                <MessageBtn title="Radera meddelandet" onClick={() => onClickDeleteMessage(message)}>
+                                    <span className="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </MessageBtn>
+                            </MessageSenderTimeBox>
+                        </>
+                        : <MessageSenderTimeBox>
+                        <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
+                        <MessageDate>{message.date}</MessageDate>
+                        <MessageTime>{message.time}</MessageTime>
+                        {
+                        message.edited && 
+                            <MessageEdited>
+                                (Edited)
+                            </MessageEdited>
+                        }
+                    </MessageSenderTimeBox>
 
-                ))}
-                <MessageText>{message.content}
-                </MessageText>
-            </MessageListElem>
-        ))}
-    </MessageBoard>
+                    ))}
+                    <MessageText>{message.content}
+                    </MessageText>
+                </MessageListElem>
+            ))}
+        </MessageBoard>
+        <MessageField />
+    
+    </>
     )
 }
 

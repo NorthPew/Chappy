@@ -1,4 +1,4 @@
-import MessageField from "../components/MessageField"
+
 import ChannelsOrFriends from "../components/ChannelsOrFriends"
 import { Outlet, useParams, useLoaderData } from "react-router-dom"
 import { useContext } from "react";
@@ -23,7 +23,6 @@ function GroupView() {
         <div>
             <ChannelsOrFriends findGroup={findGroup} />
             <Outlet />
-            <MessageField />
         </div>
     )
 }
