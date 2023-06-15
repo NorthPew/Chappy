@@ -95,17 +95,7 @@ router.post('/:route/:channel', async (req, res) => {
             res.send(newMessage);
           }
         } else {
-            if(!db.data.messages.dms[channel]) {
-                db.data.messages.dms = []
-                await db.write();
-    
-                db.data.messages.dms[channel].push(newMessage);
-    
-                await db.write();
-    
-                res.send(newMessage);
-            }
-            
+                        
             db.data.messages.dms[channel].push(newMessage);
 
             await db.write();

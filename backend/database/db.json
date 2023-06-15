@@ -1,18 +1,28 @@
 {
   "users": [
     {
-      "id": 8144,
-      "username": "Hajime",
-      "password": "12345"
-    },
-    {
-      "id": 4185,
-      "username": "EEE",
+      "id": 2319,
+      "username": "PratgladPelle",
       "password": "123"
     },
     {
-      "id": 6163,
-      "username": "VVV",
+      "id": 9366,
+      "username": "SocialaSara",
+      "password": "123"
+    },
+    {
+      "id": 7240,
+      "username": "TrevligaTommy",
+      "password": "123"
+    },
+    {
+      "id": 7025,
+      "username": "VänligaVera",
+      "password": "123"
+    },
+    {
+      "id": 1582,
+      "username": "GladaGustav",
       "password": "123"
     }
   ],
@@ -147,6 +157,19 @@
                   "username": "VVV"
                 }
               ]
+            },
+            {
+              "id": 495498,
+              "content": "Tjenare alla!",
+              "edited": false,
+              "time": "21:13:01",
+              "date": "2023-06-15",
+              "sender": [
+                {
+                  "id": 1582,
+                  "username": "GladaGustav"
+                }
+              ]
             }
           ],
           "2": [],
@@ -158,77 +181,81 @@
       }
     },
     "dms": {
-      "4185": [
+      "1582": [],
+      "2319": [
         {
-          "id": 330738,
-          "content": "Who are you?",
+          "id": 488751,
+          "content": "Tjenare Pelle!",
           "edited": false,
-          "time": "14:11:25",
+          "time": "21:10:14",
           "date": "2023-06-15",
-          "from": 8144,
-          "to":  4185,
+          "to": 2319,
           "sender": [
             {
-              "id": 8144,
-              "username": "Hajime"
+              "id": 9366,
+              "username": "SocialaSara"
             }
           ]
         },
         {
-          "id": 454013,
-          "content": "I'm EEE, ur only friend!",
+          "id": 563468,
+          "content": "Tjenare Sara! Vad vacker du är! ❤️",
           "edited": false,
-          "time": "14:48:16",
+          "time": "21:10:51",
           "date": "2023-06-15",
-          "from": 4185,
-          "to": 8144,
+          "to": 2319,
           "sender": [
             {
-              "id": 4185,
-              "username": "EEE"
+              "id": 2319,
+              "username": "PratgladPelle"
             }
           ]
         }
       ],
-      "6852": [],
-      "7461": [],
-      "8144": [
+      "7025": [
         {
-          "id": 533576,
-          "content": "OMG it finally works to update message list after sending a message!!!",
+          "id": 172947,
+          "content": "Vera är snygg 123",
           "edited": false,
-          "time": "14:10:10",
+          "time": "21:12:39",
           "date": "2023-06-15",
+          "to": 7025,
           "sender": [
             {
-              "id": 8144,
-              "username": "Hajime"
+              "id": 1582,
+              "username": "GladaGustav"
             }
           ]
-        },
+        }
+      ],
+      "7240": [
         {
-          "id": 985688,
-          "content": "Why does it update message list when finished editing???",
-          "edited": true,
-          "time": "14:35:42",
+          "id": 916553,
+          "content": "Tja Tom!",
+          "edited": false,
+          "time": "21:12:33",
           "date": "2023-06-15",
+          "to": 7240,
           "sender": [
             {
-              "id": 8144,
-              "username": "Hajime"
+              "id": 1582,
+              "username": "GladaGustav"
             }
           ]
-        },
+        }
+      ],
+      "9366": [
         {
-          "id": 265850,
-          "content": "Wait, setting await on sendmessage fixed it!",
+          "id": 926274,
+          "content": "Tjenare syster! Vad gör du nu för tiden?",
           "edited": false,
-          "time": "14:41:00",
+          "time": "21:12:26",
           "date": "2023-06-15",
+          "to": 9366,
           "sender": [
             {
-              "id": 8144,
-              "username": "Hajime"
+              "id": 1582,
+              "username": "GladaGustav"
             }
           ]
         }
