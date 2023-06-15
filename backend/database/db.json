@@ -156,7 +156,21 @@
       }
     },
     "dms": {
-      "4185": [],
+      "4185": [
+        {
+          "id": 735499,
+          "content": "Det går att skriva med sig själv!!",
+          "edited": false,
+          "time": "11:49:14",
+          "date": "2023-06-15",
+          "sender": [
+            {
+              "id": 4185,
+              "username": "EEE"
+            }
+          ]
+        }
+      ],
       "8144": [
         {
           "id": 145327,
@@ -168,6 +182,32 @@
             {
               "id": 8144,
               "username": "Hajime"
+            }
+          ]
+        },
+        {
+          "id": 593654,
+          "content": "Test",
+          "edited": false,
+          "time": "11:47:42",
+          "date": "2023-06-15",
+          "sender": [
+            {
+              "id": 4185,
+              "username": "EEE"
+            }
+          ]
+        },
+        {
+          "id": 138405,
+          "content": "Hallå där Hajime!!",
+          "edited": false,
+          "time": "11:48:27",
+          "date": "2023-06-15",
+          "sender": [
+            {
+              "id": 4185,
+              "username": "EEE"
             }
           ]
         }
