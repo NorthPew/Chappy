@@ -96,8 +96,11 @@ function ChatView() {
         const { name, id } = useParams();
 
         // To tell messageField where to send a message
-        setSaveGroupName(name)
-        setSaveChannelId(id)
+        useEffect(() => {
+            setSaveGroupName(name)
+            setSaveChannelId(id)
+        }, [name, id])
+
 
     // To tell MessageField what to display
             useEffect(() => {
@@ -169,8 +172,10 @@ function ChatView() {
     }
 
     return (
-        <>
+        <MessageBoard>
            {messageData.map((message) => (
+            message.from === saveUserId || message.to === saveChannelId ?
+            (
             <MessageListElem key={message.id}>
                 {
                     editingMessage.id === message.id ?
@@ -220,9 +225,61 @@ function ChatView() {
                 <MessageText>{message.content}
                 </MessageText>
             </MessageListElem>
-        ))}
+            ) : message.from === saveChannelId || message.to === saveUserId &&
+            <>
+                           <MessageListElem key={message.id}>
+                {
+                    editingMessage.id === message.id ?
+                    (
+                        <form onSubmit={onSubmitEditedMessage}>
+                            <MessageEditInputField type="text" value={editMessageInput} onChange={onChangeEditMessage} placeholder={message.content}></MessageEditInputField>
+                        </form>
+                    )
+                    : message.sender.map((sender) => (
+                        isLoggedIn && saveUserName === sender.username && saveUserId === sender.id ?
+                    <>
+                        <MessageSenderTimeBox>
+                            <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
+                            <MessageDate>{message.date}</MessageDate>
+                            <MessageTime>{message.time}</MessageTime>
+                                    {
+                            message.edited && 
+                                <MessageEdited>
+                                    (Edited)
+                                </MessageEdited>
+                            }
+                            <MessageBtn title="Ändra på meddelandet" onClick={() => onEditMessage(message)}>
+                                <span className="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </MessageBtn>
+                            <MessageBtn title="Radera meddelandet" onClick={() => onClickDeleteMessage(message)}>
+                                <span className="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </MessageBtn>
+                        </MessageSenderTimeBox>
+                    </>
+                    : <MessageSenderTimeBox>
+                    <MessageSender title={`#${sender.id}`}>{sender.username}</MessageSender>
+                    <MessageDate>{message.date}</MessageDate>
+                    <MessageTime>{message.time}</MessageTime>
+                    {
+                    message.edited && 
+                        <MessageEdited>
+                            (Edited)
+                        </MessageEdited>
+                    }
+                </MessageSenderTimeBox>
+
+                ))}
+                <MessageText>{message.content}
+                </MessageText>
+            </MessageListElem>
+            </>
+        )) }
             <MessageField />
-        </>
+        </MessageBoard>
     )
 }
 
