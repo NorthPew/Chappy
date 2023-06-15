@@ -24,7 +24,14 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <Start />,
-                loader: usersLoader
+                loader: usersLoader,
+                children: [
+                    {
+                        path: '/:name/:id',
+                        element: <ChatView />,
+                        loader: chatsLoader
+                    }
+                ]
             },
             {
                 path: '/group/:name',
@@ -37,11 +44,6 @@ const router = createBrowserRouter([
                         loader: channelsLoader,
                     }
                 ]
-            },
-            {
-                path: '/:name/:id',
-                element: <ChatView />,
-                loader: chatsLoader
             }
         ]
     }

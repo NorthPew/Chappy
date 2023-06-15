@@ -155,6 +155,21 @@
         }
       }
     },
-    "dms": {}
+    "dms": {
+      "8144": [
+      {
+        "id": 145327,
+        "content": "Testning",
+        "edited": true,
+        "time": "11:35",
+        "date": "2023-06-15",
+        "sender": [
+          {
+            "id": 8144,
+            "username": "Hajime"
+          }
+        ]
+      }
+    ]}
   }
 }

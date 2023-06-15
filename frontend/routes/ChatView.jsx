@@ -11,6 +11,76 @@ import deleteMessage from "../data/deleteMessage";
 import ChannelsOrFriends from "../components/ChannelsOrFriends";
 import MessageField from "../components/MessageField"
 
+
+const MessageSender = styled.p`
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px;
+`
+
+const MessageTime = styled.p`
+    font-size: 12px;
+    font-weight: thin;
+    margin: 0px;
+`
+
+const MessageDate = styled.p`
+    font-size: 12px;
+    font-weight: thin;
+    margin: 0px;
+`
+
+const MessageSenderTimeBox = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    column-gap: 10px;
+`
+
+const MessageText = styled.p`
+    font-size: 16px;
+`
+
+const MessageEdited = styled.p`
+    font-size: 12px;
+    font-weight: thin;
+    margin: 0px;
+`
+
+const MessageBoard = styled.ul`
+    padding-left: 7.5px;
+    height: calc(100vh - 92px);
+    overflow-y: scroll;
+    width: 86vw;
+    float: left;
+`
+
+const MessageListElem = styled.li`
+    list-style-type: none;
+`
+
+const MessageBtn = styled.button`
+    padding: 5px;
+    border: none;
+    border-radius: 6.5px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #f1f1f1;
+
+    &:hover {
+        background-color: #424549;
+    }
+`
+
+const MessageEditInputField = styled.input`
+    border-radius: 7.5px;
+    background-color: #424549;
+    width: 80vw;
+    border: none;
+    padding: .85em .75em;
+    outline: none;
+`
+
 export const loader = (dmName, dmUserId) => () => getMessages(dmName, dmUserId)
 
 
@@ -93,7 +163,7 @@ function ChatView() {
     function onClickDeleteMessage(message) {
         deleteMessage(saveGroupName, saveChannelId, message.id)
     }
-    
+
     return (
         <>
            {messageData.map((message) => (

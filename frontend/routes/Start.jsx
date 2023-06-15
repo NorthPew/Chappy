@@ -9,6 +9,7 @@ import authorize from "../data/authorize";
 // Login or Register
 import ice from "../images/background.jpg"
 import registerUser from "../data/registerUser";
+import { Outlet } from "react-router-dom";
 
 const BackgroundBox = styled.div`
     background-image: url('${ice}');
@@ -71,6 +72,7 @@ function UserStart() {
     return (
         <Wrapper>
             <ChannelsOrFriends />
+            <Outlet />
         </Wrapper>
     )
 }

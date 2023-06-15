@@ -27,13 +27,9 @@ router.get('/:route/:channel', async (req, res) => {
             res.send(combinedChatRoute) 
         }
     } else {
-        if (!db.data.messages.dms.hasOwnProperty(route)) {
-            res.status(404).send({message: `DM or userID not found. Got: DM: ${route} and userID: ${channel}`})
-        } else {
-            combinedChatRoute = db.data.messages.dms[route].channels[channel]
+            combinedChatRoute = db.data.messages.dms[channel]
 
             res.send(combinedChatRoute)
-        }
     }
 })
 
