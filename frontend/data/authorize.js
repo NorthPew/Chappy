@@ -1,7 +1,7 @@
 import { API_URL } from "./constants";
 
 async function authorize(authToken) {
-	console.log("authorizing in user...");
+	console.log("authorizing user...");
 	const options = {
 		method: 'GET',
 		headers: { 'Authorization': authToken },
