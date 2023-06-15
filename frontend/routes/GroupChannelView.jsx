@@ -160,8 +160,10 @@ function GroupChannelView() {
         setEditMessageInput(e.target.value)
     }
 
-    function onClickDeleteMessage(message) {
+    async function onClickDeleteMessage(message) {
         deleteMessage(saveGroupName, saveChannelId, message.id)
+
+        await refreshMsgs(saveGroupName, saveChannelId)
     }
 
     return (

@@ -197,14 +197,14 @@ router.delete('/:route/:channel/:id', async (req, res) => {
             res.status(200).send(combinedChatRoute)
         }
     } else {
-        combinedChatRoute = db.data.messages.dms[route].channels[channel]
+        combinedChatRoute = db.data.messages.dms[channel]
 
         let messageToDelete = combinedChatRoute.find(message => message.id === id)
 
         if(!messageToDelete) {
             return res.status(400).send({ message: 'Kunde inte hitta meddelandet!'})
         } else {
-            db.data.messages.groups[route].channels[channel] = combinedChatRoute.filter((message) => message.id !== id)
+            db.data.messages.dms[channel] = combinedChatRoute.filter((message) => message.id !== id)
 
             await db.write()
 

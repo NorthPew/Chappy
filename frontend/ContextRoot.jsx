@@ -36,6 +36,8 @@ const ContextRoot = ({children}) => {
     async function refreshMsgs(route, channel) {
         const data = await getMessages(route, channel);
         setMessageData(data);
+
+        console.log('Updating message board, data: ' + JSON.stringify(data));
     }
 
 
